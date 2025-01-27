@@ -8,7 +8,7 @@
     "customizations": {
         "codespaces": {
             "openFiles": [ // Which file(s) to open by default
-            "index.html"
+            "index.html",
             ]
         },
         "vscode": {
