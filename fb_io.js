@@ -30,11 +30,6 @@ function fb_checkGames(){
 }
 
 function fb_createGame(){
-  console.log("CreatingGame")
-
-  console.log(user.uid)
-  console.log(user.displayName)
-
   firebase.database().ref('/').set(
     {
       waitingGames: {[user.uid]: user.displayName}
