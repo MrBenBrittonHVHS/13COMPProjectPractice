@@ -35,10 +35,9 @@ function fb_createGame(){
   console.log(user.uid)
   console.log(user.displayName)
 
-  console.log(temp)
   firebase.database().ref('/').set(
     {
-      waitingGames: "poop"
+      waitingGames: {[user.uid]: user.displayName}
     }
   )
 }
