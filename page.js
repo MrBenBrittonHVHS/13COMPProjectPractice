@@ -6,7 +6,12 @@ function page_updateGameList(gameList){
       <button onclick="fb_createGame()">Create a game</button>
     `
     }else{
-    gameDisplay.innerHTML = '';
+    gameDisplay.innerHTML = 'Games available:<br>';
+    Object.keys(gameList).forEach(function(key) {
+      gameDisplay.innerHTML += "<button onclick='fb_joinGame("+key+")'>Join "+gameList[key]+'\'s game\<br\>';
+
+      //console.log(key, gameList[key]);
     
+    });
   }
 }
