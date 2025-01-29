@@ -6,7 +6,7 @@ function page_updateGameList(gameList){
       <button onclick="fb_createGame()">Create a game</button>
     `
     }else{
-    gameDisplay.innerHTML = 
-    `Yay, there is a game`
-    }
+    gameDisplay.innerHTML = '';
+      gameList.keys().foreach
+  }
 }
