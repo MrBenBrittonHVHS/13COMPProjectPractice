@@ -7,6 +7,6 @@ function page_updateGameList(gameList){
     `
     }else{
     gameDisplay.innerHTML = '';
-      gameList.keys().foreach
+      gameList.keys().forEach()
   }
 }
