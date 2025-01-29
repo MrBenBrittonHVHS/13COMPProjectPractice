@@ -36,6 +36,10 @@ function fb_createGame(){
     }
   )
 }
+
+function fb_joinGame(gameID){
+  console.log("    Joining game...", gameID)
+}
 /**************************************************************/
 // fb_helloWorld()
 // Demonstrate a minimal write to firebase
