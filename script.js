@@ -1,7 +1,7 @@
-console.log("Initialising Firebase");
 fb_initialise();
-console.log("Firebase initialise finished");
-
+console.log("Authenticate");
+fb_authenticate(fb_checkGames);
+console.log("Google Authentication finished");
 /*
 console.log("Writing a 'hello world' message to Firebase");
 fb_helloWorld();

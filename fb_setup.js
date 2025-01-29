@@ -1,5 +1,3 @@
-var database;
-
 /**************************************************************/
 // fb_initialise()
 // Initialize firebase, connect to the Firebase project.
