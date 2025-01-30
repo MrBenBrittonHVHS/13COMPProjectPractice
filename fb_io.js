@@ -31,8 +31,16 @@ function fb_checkGames(){
   firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
 }
 
+// Game created!
+// Stop the other listeners
+// Start listening for my game to start
+
 function fb_createGame(){
+  firebase.database().ref('/waitingGames').off()
+
   firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
+
+  
 }
 
 // A game was clicked - Start the new game - This involves a whole lot of callbacks
