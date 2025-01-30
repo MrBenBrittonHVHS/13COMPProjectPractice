@@ -38,11 +38,15 @@ function fb_createGame(){
   )
 }
 
-// A game was clicked 
+// A game was clicked - Start the new game
+// Detach listeners
+// Set game role
+// Create new game entry
+// start the game
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
   // Detatch the waiting game listener
-  firebase.database().ref('/').off()
+  firebase.database().ref('/waitingGames').off()
   // Start the new game
     // get the name of the owner
   gameRole = "challenger"
@@ -66,6 +70,10 @@ function fb_joinGame(gameID){
     }
   )
 }
+
+// Game flow code.
+// Game start set up the game state listener
+// Game State listener passes data to draw page
 function fb_startGame(gameID){
 console.log("Game Started")
 firebase.database().ref('/gamesInProgress/'+gameID).on('value', fb_gameStateChanged, fb_readError);
@@ -75,9 +83,16 @@ function fb_gameStateChanged(snapshot){
   console.log(snapshot.val())
   page_drawGame(snapshot.val());
 }
+// When a guess is made 'play' the game, save result to the database
 function fb_makeGuess(guess){
   console.log("guess made")
-  console.log(guess)
+  // Create the new game record
+  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
+  firebase.database().ref(gamePath).set(
+    {
+      guess:guess
+    }
+  );
 }
 /**************************************************************/
 // fb_helloWorld()
