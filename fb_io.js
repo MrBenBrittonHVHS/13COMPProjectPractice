@@ -51,8 +51,12 @@ function fb_joinGame(gameID){
     firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
-          gameOwner: gameOwner,
-          challenger: user.displayName
+          gameOwner: {
+            ID : gameID,
+            name: gameOwner
+          }
+          challenger: {
+            user.displayName
         }
       }
     )
