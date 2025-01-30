@@ -29,14 +29,16 @@ challengerResult = gameData.challenger.result;
 ownerGuess = gameData.gameOwner.guess;
 ownerResult = gameData.gameOwner.result;
 console.log(challengerGuess)
-  gameDisplay.innerHTML = 
+  if (challenger == "Waiting..."){
+    gameDisplay.innerHTML = 
+  `<h1> waiting for someone to join your game</h1>`
+  }else{  
+    gameDisplay.innerHTML = 
   `${gameData.number}
   <h1>${owner} vs. ${challenger}</h1>
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
 <br>`
-  if (challenger == "waiting..."){
 
-  }else{
   if (ownerResult == "win"){
     gameDisplay.innerHTML += `${owner} wins!`
 

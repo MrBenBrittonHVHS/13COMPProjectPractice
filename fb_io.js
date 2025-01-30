@@ -43,7 +43,7 @@ function fb_createGame(){
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
-      gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
+      gameOwner: {name: user.displayName, guess:"no guess yet", result: " "},
       challenger: {name: "Waiting...", guess:"no guess yet", result: " "}
     }
   ).then(fb_startGame(gameID, "gameOwner"))
