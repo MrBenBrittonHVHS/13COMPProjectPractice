@@ -32,11 +32,7 @@ function fb_checkGames(){
 }
 
 function fb_createGame(){
-  firebase.database().ref('/waitingGames').set(
-    {
-      [user.uid]: user.displayName
-    }
-  )
+  firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
 }
 
 // A game was clicked - Start the new game
