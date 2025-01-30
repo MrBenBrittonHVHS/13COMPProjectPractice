@@ -61,13 +61,11 @@ function fb_joinGame(game){
     // Create the new game record
     console.log("Creating")
 
-    firebase.database().ref('/gamesInProgress').set(
+    firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
       {
-        [gameID]: {
-          number: gameNumber,
-          gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
-          challenger: {name: user.displayName, guess:"no guess yet", result: " "}
-        }
+        number: gameNumber,
+        gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
+        challenger: {name: user.displayName, guess:"no guess yet", result: " "}
       }
     ).then(fb_startGame(gameID, "challenger"))
   }, fb_readError);
