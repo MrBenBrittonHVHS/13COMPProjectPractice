@@ -65,7 +65,7 @@ function fb_joinGame(gameID){
   )
 }
 function fb_startGame(role){
-  
+console.log("Game Started as "+role)
 }
 /**************************************************************/
 // fb_helloWorld()
