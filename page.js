@@ -42,7 +42,7 @@ console.log(challengerGuess)
 
   }else{
       gameDisplay.innerHTML += `
-        Make your guess!
+      Make your guess!
       <input type="number" id="guess"></input><br>
       <button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
         `
