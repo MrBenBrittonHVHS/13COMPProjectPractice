@@ -27,7 +27,7 @@ function fb_checkUser(){
 function fb_checkGames(){
   console.log("Checking Games")
   //console.log(database)
-  checkGamesListener = firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
+  firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
 }
 
 function fb_createGame(){
@@ -66,6 +66,12 @@ function fb_joinGame(gameID){
 }
 function fb_startGame(gameID,role){
 console.log("Game Started as "+role)
+firebase.database().ref('/gamesInProgress/'+gameID).on('value', fb_gameStateChanged, fb_readError);
+}
+function fb_gameStateChanged(snapshot){
+  console.log("Game State changed ")
+  console.log(snapshot.val())
+
 }
 /**************************************************************/
 // fb_helloWorld()
