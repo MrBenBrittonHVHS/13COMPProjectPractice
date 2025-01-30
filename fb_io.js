@@ -39,8 +39,9 @@ function fb_createGame(){
   firebase.database().ref('/waitingGames').off()
 
   firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
+  gameRole = "challenger";
+  gameID = user.uid;
 
-  
 }
 
 // A game was clicked - Start the new game - This involves a whole lot of callbacks
