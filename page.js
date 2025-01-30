@@ -31,6 +31,6 @@ function page_drawGame(gameState){
   Make your guess!
 <br>
 <input type="number" id="guess"></input><br>
-<button onclick="fb_makeGuess()">Guess</button>
+<button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
   `
 }
