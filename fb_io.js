@@ -71,7 +71,7 @@ firebase.database().ref('/gamesInProgress/'+gameID).on('value', fb_gameStateChan
 function fb_gameStateChanged(snapshot){
   console.log("Game State changed ")
   console.log(snapshot.val())
-
+  page_drawGame(snapshot.val());
 }
 /**************************************************************/
 // fb_helloWorld()

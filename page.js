@@ -19,3 +19,10 @@ function page_updateGameList(gameList){
 function page_updateGameScreen(gameState){
   console.log("GameListener running")
 }
+
+function page_drawGame(gameState){
+  gameDisplay.innerHTML = 
+  `
+  <h1>
+  `
+}
