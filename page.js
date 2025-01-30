@@ -9,8 +9,9 @@ function page_updateGameList(gameList){
     gameDisplay.innerHTML = 'Games available:<br>';
     Object.keys(gameList).forEach(function(key) {
       gameDisplay.innerHTML += "<button onclick='fb_joinGame(\""+key+"\")'>Join "+gameList[key]+'\'s game</button><br>';
-      gameDisplay.innerHTML += "<br>or <button onclick="fb_createGame()">Create a new one</button>";
       //console.log(key, gameList[key]);
     });
+    gameDisplay.innerHTML += "<br>or <button onclick='fb_createGame()'>Create a new one</button>";
+
   }
 }
