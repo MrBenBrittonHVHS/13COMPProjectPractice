@@ -93,8 +93,23 @@ function fb_gameStateChanged(snapshot){
 function fb_makeGuess(guess){
   console.log("guess made")
   // Create the new game record
-  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/guess/"
-  firebase.database().ref(gamePath).set(guess);
+  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
+  firebase.database().ref(gamePath+"guess/").set(guess);
+  var result;
+  if (guess < gameNumber){
+    result = 'too low';
+  }else if (guess > gameNumber){
+    result = 'too high';
+  }else{
+    result = 'win';
+  }
+  firebase.database().ref(gamePath+"/").set(
+    {
+      guess: guess,
+      result: result
+    }
+  );
+
 }
 /**************************************************************/
 // fb_helloWorld()
