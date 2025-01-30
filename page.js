@@ -29,5 +29,7 @@ function page_drawGame(gameState){
   it is
   <h1>${owner} vs. ${challenger}</h1>
   Make your guess!
+<br>
+<input type="number"
   `
 }
