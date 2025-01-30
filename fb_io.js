@@ -1,4 +1,5 @@
 var user;
+var checkGamesListener;
 
 function fb_authenticate(RUN_NEXT){
   firebase.auth().onAuthStateChanged((authUser)=>{
@@ -26,7 +27,7 @@ function fb_checkUser(){
 function fb_checkGames(){
   console.log("Checking Games")
   //console.log(database)
-  firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
+  checkGamesListener = firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
 }
 
 function fb_createGame(){
@@ -39,6 +40,7 @@ function fb_createGame(){
 
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
+  firebase.database().off(checkGamesListener);
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     console.log(snapshot.val)
