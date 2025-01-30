@@ -41,7 +41,7 @@ function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
-    console.log(snapshot)
+    console.log(snapshot.val)
     gameOwner = snapshot.val();
     firebase.database().ref('/gamesInProgress').set(
       {
