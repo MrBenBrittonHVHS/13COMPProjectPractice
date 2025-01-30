@@ -30,7 +30,7 @@ function page_drawGame(gameState){
   <h1>${owner} vs. ${challenger}</h1>
   Make your guess!
 <br>
-<input type="number" id=guess></input><br>
-<button onclick="fb_makeGuess(${guess.value})">Guess</button>
+<input type="number" id="guess"></input><br>
+<button onclick="fb_makeGuess()">Guess</button>
   `
 }
