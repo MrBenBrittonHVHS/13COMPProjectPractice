@@ -39,6 +39,11 @@ function fb_createGame(){
 
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
+  firebase.database().ref('/gamesInProgress').set(
+    {
+      gameID: user.displayName
+    }
+  )
 }
 /**************************************************************/
 // fb_helloWorld()
