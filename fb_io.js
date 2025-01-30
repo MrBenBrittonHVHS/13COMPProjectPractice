@@ -1,5 +1,6 @@
 var user;
 var gameRole; //values are challenger or gameOwner
+var gameID;
 
 function fb_authenticate(RUN_NEXT){
   firebase.auth().onAuthStateChanged((authUser)=>{
@@ -43,13 +44,16 @@ function fb_createGame(){
 // Set game role
 // Create new game entry
 // start the game
-function fb_joinGame(gameID){
-  console.log("    Joining game...", gameID)
+function fb_joinGame(game){
+  console.log("    Joining game...", game)
   // Detatch the waiting game listener
   firebase.database().ref('/waitingGames').off()
   // Start the new game
-    // get the name of the owner
-  gameRole = "challenger"
+  // Set up the game globals
+  gameRole = "challenger";
+  gameID = game;
+
+  // Get the name of the owner and create the new game record
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     gameOwner = snapshot.val();
