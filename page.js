@@ -23,6 +23,11 @@ function page_updateGameScreen(gameState){
 function page_drawGame(gameState){
   owner = gameState.gameOwner.name;
   challenger = gameState.challenger.name;
+
+challengerGuess = gameState.gameOwner.name
+challengerResult = 
+ownerGuess = 
+ownerResult = 
   gameDisplay.innerHTML = 
   `
   <h2>Game on!</h2>
