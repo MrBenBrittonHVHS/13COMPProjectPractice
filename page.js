@@ -30,10 +30,9 @@ ownerGuess = gameState.gameOwner.guess;
 ownerResult = gameState.gameOwner.result;
 console.log(challengerGuess)
   gameDisplay.innerHTML = 
-  `
+  `${gameState.number}
   <h1>${owner} vs. ${challenger}</h1>
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
-  Make your guess!
 <br>`
   if (ownerResult == "win"){
     gameDisplay.innerHTML += `${owner} wins!`
@@ -43,6 +42,7 @@ console.log(challengerGuess)
 
   }else{
       gameDisplay.innerHTML += `
+        Make your guess!
       <input type="number" id="guess"></input><br>
       <button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
         `
