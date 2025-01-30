@@ -34,6 +34,9 @@ console.log(challengerGuess)
   <h1>${owner} vs. ${challenger}</h1>
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
 <br>`
+  if (challenger == "waiting..."){
+
+  }else{
   if (ownerResult == "win"){
     gameDisplay.innerHTML += `${owner} wins!`
 
@@ -48,3 +51,4 @@ console.log(challengerGuess)
         `
       }
   }
+}
