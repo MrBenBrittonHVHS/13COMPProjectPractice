@@ -35,8 +35,16 @@ console.log(challengerGuess)
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
   Make your guess!
 <br>`
-gameDisplay.innerHTML += `
-<input type="number" id="guess"></input><br>
-<button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
-  `
-}
+  if (ownerResult == "win"){
+    gameDisplay.innerHTML += `${owner} wins!`
+
+  }else if (challengerResult == "win"){
+    gameDisplay.innerHTML += `${challenger} wins!`
+
+  }else{
+      gameDisplay.innerHTML += `
+      <input type="number" id="guess"></input><br>
+      <button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
+        `
+      }
+  }
