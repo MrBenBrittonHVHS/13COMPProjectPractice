@@ -103,12 +103,7 @@ function fb_makeGuess(guess){
   }else{
     result = 'win';
   }
-  firebase.database().ref(gamePath+"/").set(
-    {
-      guess: guess,
-      result: result
-    }
-  );
+  firebase.database().ref(gamePath+"/result/").set(result);
 
 }
 /**************************************************************/
