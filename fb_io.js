@@ -69,12 +69,6 @@ function fb_joinGame(game){
       }
     ).then(fb_startGame(gameID, "challenger"))
   }, fb_readError);
-
-  firebase.database().ref('/gamesInProgress').set(
-    {
-      gameID: user.displayName
-    }
-  )
 }
 
 // Game flow code.
