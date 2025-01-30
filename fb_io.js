@@ -57,16 +57,19 @@ function fb_joinGame(game){
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     gameOwner = snapshot.val();
-    // Create the new game record
-    console.log("Creating")
+    //Delete the waiting game
+    firebase.database().ref('/waitingGames/'+gameID+'/').set(null).then(()=>{
+      // Create the new game record
+      console.log("Creating")
 
-    firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
-      {
-        number: gameNumber,
-        gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
-        challenger: {name: user.displayName, guess:"no guess yet", result: " "}
-      }
-    ).then(fb_startGame(gameID, "challenger"))
+      firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
+        {
+          number: gameNumber,
+          gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
+          challenger: {name: user.displayName, guess:"no guess yet", result: " "}
+        }
+      ).then(fb_startGame(gameID, "challenger"))
+    })
   }, fb_readError);
 }
 
