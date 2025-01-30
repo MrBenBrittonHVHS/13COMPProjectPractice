@@ -39,7 +39,7 @@ function fb_createGame(){
   firebase.database().ref('/waitingGames').off()
 
   firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
-  gameRole = "owner";
+  gameRole = "gameOwner";
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
