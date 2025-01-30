@@ -40,7 +40,8 @@ function fb_createGame(){
 
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
-  firebase.off(checkGamesListener);
+  // Detatch the game listener
+  firebase.database().ref('/waitingGames').off()
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     console.log(snapshot.val)
