@@ -59,6 +59,8 @@ function fb_joinGame(game){
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     gameOwner = snapshot.val();
     // Create the new game record
+    console.log("Creating game record")
+
     firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
@@ -75,7 +77,7 @@ function fb_joinGame(game){
 // Game start set up the game state listener
 // Game State listener passes data to draw page
 function fb_startGame(gameID){
-console.log("Game Started")
+console.log("Game Started - Start read on")
 firebase.database().ref('/gamesInProgress/'+gameID).on('value', fb_gameStateChanged, fb_readError);
 }
 function fb_gameStateChanged(snapshot){
