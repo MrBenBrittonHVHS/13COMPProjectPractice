@@ -34,7 +34,8 @@ console.log(challengerGuess)
   <h1>${owner} vs. ${challenger}</h1>
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
   Make your guess!
-<br>
+<br>`
+gameDisplay.innerHTML += `
 <input type="number" id="guess"></input><br>
 <button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
   `
