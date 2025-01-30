@@ -1,7 +1,7 @@
 var user;
 var gameRole; //values are challenger or gameOwner
 var gameID;
-
+var gameNumber;
 function fb_authenticate(RUN_NEXT){
   firebase.auth().onAuthStateChanged((authUser)=>{
     if (authUser){
@@ -52,6 +52,7 @@ function fb_joinGame(game){
   // Set up the game globals
   gameRole = "challenger";
   gameID = game;
+  gameNumber = Math.floor(Math.random()*100);
 
   // Get the name of the owner and create the new game record
   var gameOwner=""
@@ -61,6 +62,7 @@ function fb_joinGame(game){
     firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
+          number: gameNumber,
           gameOwner: {name: gameOwner},
           challenger: {name: user.displayName}
         }
