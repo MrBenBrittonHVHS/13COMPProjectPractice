@@ -63,8 +63,8 @@ function fb_joinGame(game){
       {
         [gameID]: {
           number: gameNumber,
-          gameOwner: {name: gameOwner},
-          challenger: {name: user.displayName}
+          gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
+          challenger: {name: user.displayName, guess:"no guess yet", result: " "}
         }
       }
     ).then(fb_startGame(gameID, "challenger"))
