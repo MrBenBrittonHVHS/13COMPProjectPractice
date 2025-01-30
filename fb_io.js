@@ -99,6 +99,7 @@ function fb_makeGuess(guess){
     result = 'too high';
   }else{
     result = 'win';
+    firebase.database().ref("/games/"+gameID+"/state/").set("finished");
   }
   firebase.database().ref(gamePath+"/result/").set(result);
 
