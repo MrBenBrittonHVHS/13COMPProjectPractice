@@ -35,11 +35,15 @@ function fb_createGame(){
   firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
 }
 
-// A game was clicked - Start the new game
-// Detach listeners
-// Set game role
-// Create new game entry
-// start the game
+// A game was clicked - Start the new game - This involves a whole lot of callbacks
+
+// Read the gameOwner
+//then
+// Delete the waiting game
+//then
+// Write the GameInProgress Record
+//then
+// start the game listener
 function fb_joinGame(game){
   console.log("    Joining game...", game)
   // Detatch the waiting game listener
@@ -49,7 +53,6 @@ function fb_joinGame(game){
   gameRole = "challenger";
   gameID = game;
   gameNumber = Math.floor(Math.random()*100);
-
   // Get the name of the owner and create the new game record
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
