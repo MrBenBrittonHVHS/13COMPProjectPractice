@@ -40,12 +40,14 @@ function fb_createGame(){
 
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
-  // Detatch the game listener
+  // Detatch the waiting game listener
   firebase.database().ref('/waitingGames').off()
+  // Start the new game
+    // get the name of the owner
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
-    console.log(snapshot.val)
     gameOwner = snapshot.val();
+    // Create the new game record
     firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
