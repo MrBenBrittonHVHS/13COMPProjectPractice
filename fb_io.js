@@ -40,16 +40,18 @@ function fb_createGame(){
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
   var gameOwner=""
-  firebase.database().ref('/waitingGames/'+gameID).once('value', (data)=>{
-
+  firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
+    console.log(snapshot)
+    gameOwner = snapshot.val();
     firebase.database().ref('/gamesInProgress').set(
       {
         gameID: {
           gameOwner: gameOwner,
           challenger: user.displayName
+        }
       }
     )
-  }), fb_readError);
+  }, fb_readError);
 
   firebase.database().ref('/gamesInProgress').set(
     {
