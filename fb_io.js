@@ -97,6 +97,7 @@ firebase.database().ref('/gamesInProgress/'+gameID).on('value', fb_gameStateChan
 function fb_gameStateChanged(snapshot){
   console.log("Game State changed ")
   console.log(snapshot.val())
+  gameNumber = snapshot.val().number;
   page_drawGame(snapshot.val());
 }
 // When a guess is made 'play' the game, save result to the database
