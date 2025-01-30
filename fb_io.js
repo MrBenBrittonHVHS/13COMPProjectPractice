@@ -39,6 +39,9 @@ function fb_createGame(){
 
 function fb_joinGame(gameID){
   console.log("    Joining game...", gameID)
+  var gameOwner=""
+  firebase.database().ref('/waitingGames/'+gameID).once('value', fb_readGamesList, fb_readError);
+
   firebase.database().ref('/gamesInProgress').set(
     {
       gameID: user.displayName
