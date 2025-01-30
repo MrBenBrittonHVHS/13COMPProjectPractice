@@ -34,8 +34,10 @@ function fb_checkGames(){
 function fb_createGame(){
   firebase.database().ref('/games').set(
     {
-      [user.uid]: user.displayName,
-      state: "waiting"
+      [user.uid]: {
+        gameOwner: user.displayName,
+        state: "waiting"
+      }
     }
   )
 }
