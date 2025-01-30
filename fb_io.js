@@ -28,16 +28,13 @@ function fb_checkUser(){
 function fb_checkGames(){
   console.log("Checking Games")
   //console.log(database)
-  firebase.database().ref('/games').on('value', fb_readGamesList, fb_readError);
+  firebase.database().ref('/waitingGames').on('value', fb_readGamesList, fb_readError);
 }
 
 function fb_createGame(){
-  firebase.database().ref('/games').set(
+  firebase.database().ref('/waitingGames').set(
     {
-      [user.uid]: {
-        gameOwner: user.displayName,
-        state: "waiting"
-      }
+      [user.uid]: user.displayName
     }
   )
 }
@@ -49,7 +46,8 @@ function fb_createGame(){
 // start the game
 function fb_joinGame(game){
   console.log("    Joining game...", game)
-
+  // Detatch the waiting game listener
+  firebase.database().ref('/waitingGames').off()
   // Start the new game
   // Set up the game globals
   gameRole = "challenger";
@@ -58,15 +56,14 @@ function fb_joinGame(game){
 
   // Get the name of the owner and create the new game record
   var gameOwner=""
-  firebase.database().ref('/games/'+gameID).once('value', (snapshot)=>{
+  firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     gameOwner = snapshot.val();
     // Create the new game record
-    console.log("Creating game record")
+    console.log("Creating")
 
-    firebase.database().ref('/game').set(
+    firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
-          state: "inProgress",
           number: gameNumber,
           gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
           challenger: {name: user.displayName, guess:"no guess yet", result: " "}
@@ -92,7 +89,7 @@ function fb_gameStateChanged(snapshot){
 function fb_makeGuess(guess){
   console.log("guess made")
   // Create the new game record
-  var gamePath = "/games/"+gameID+"/"+gameRole+"/"
+  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
   firebase.database().ref(gamePath+"guess/").set(guess);
   var result;
   if (guess < gameNumber){
@@ -101,7 +98,6 @@ function fb_makeGuess(guess){
     result = 'too high';
   }else{
     result = 'win';
-    firebase.database().ref("/games/"+gameID+"/state/").set("finished");
   }
   firebase.database().ref(gamePath+"/result/").set(result);
 
