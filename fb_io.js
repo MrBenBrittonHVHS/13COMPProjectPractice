@@ -55,7 +55,10 @@ function fb_joinGame(gameID){
           challenger: user.displayName
         }
       }
-    )
+    ).then(()=>{
+      //Set up the game listener
+      
+    })
   }, fb_readError);
 
   firebase.database().ref('/gamesInProgress').set(
