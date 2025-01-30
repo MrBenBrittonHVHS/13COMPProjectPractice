@@ -16,21 +16,21 @@ function page_updateGameList(gameList){
   }
 }
 
-function page_updateGameScreen(gameState){
+function page_updateGameScreen(gameData){
   console.log("GameListener running")
 }
 
-function page_drawGame(gameState){
-  owner = gameState.gameOwner.name;
-  challenger = gameState.challenger.name;
+function page_drawGame(gameData){
+  owner = gameData.gameOwner.name;
+  challenger = gameData.challenger.name;
 
-challengerGuess = gameState.challenger.guess;
-challengerResult = gameState.challenger.result;
-ownerGuess = gameState.gameOwner.guess;
-ownerResult = gameState.gameOwner.result;
+challengerGuess = gameData.challenger.guess;
+challengerResult = gameData.challenger.result;
+ownerGuess = gameData.gameOwner.guess;
+ownerResult = gameData.gameOwner.result;
 console.log(challengerGuess)
   gameDisplay.innerHTML = 
-  `${gameState.number}
+  `${gameData.number}
   <h1>${owner} vs. ${challenger}</h1>
   ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
 <br>`
