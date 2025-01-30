@@ -101,7 +101,7 @@ function fb_gameStateChanged(snapshot){
 }
 // When a guess is made 'play' the game, save result to the database
 function fb_makeGuess(guess){
-  console.log("guess made")
+  console.log("guess made by ", gameRole)
   // Create the new game record
   var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
   firebase.database().ref(gamePath+"guess/").set(guess);
