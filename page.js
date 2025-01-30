@@ -31,9 +31,8 @@ ownerResult = gameState.gameOwner.result;
 console.log(challengerGuess)
   gameDisplay.innerHTML = 
   `
-  <h2>Game on!</h2>
-  it is
   <h1>${owner} vs. ${challenger}</h1>
+  ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
   Make your guess!
 <br>
 <input type="number" id="guess"></input><br>
