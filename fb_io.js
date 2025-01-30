@@ -73,6 +73,10 @@ function fb_gameStateChanged(snapshot){
   console.log(snapshot.val())
   page_drawGame(snapshot.val());
 }
+function fb_makeGuess(guess){
+  console.log("guess made")
+  console.log(guess)
+}
 /**************************************************************/
 // fb_helloWorld()
 // Demonstrate a minimal write to firebase
