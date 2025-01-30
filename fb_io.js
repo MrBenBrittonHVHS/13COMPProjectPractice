@@ -91,12 +91,8 @@ function fb_gameStateChanged(snapshot){
 function fb_makeGuess(guess){
   console.log("guess made")
   // Create the new game record
-  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
-  firebase.database().ref(gamePath).set(
-    {
-      guess:guess
-    }
-  );
+  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/guess/"
+  firebase.database().ref(gamePath).set(guess);
 }
 /**************************************************************/
 // fb_helloWorld()
