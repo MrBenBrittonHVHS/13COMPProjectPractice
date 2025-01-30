@@ -24,10 +24,10 @@ function page_drawGame(gameState){
   owner = gameState.gameOwner.name;
   challenger = gameState.challenger.name;
 
-challengerGuess = gameState.challenger.guess
-challengerResult = gameState.challenger.result
-ownerGuess = gameState.owner.guess
-ownerResult = gameState.owner.result
+challengerGuess = gameState.challenger.guess;
+challengerResult = gameState.challenger.result;
+ownerGuess = gameState.gameOwner.guess;
+ownerResult = gameState.gameOwner.result;
 console.log(challengerGuess)
   gameDisplay.innerHTML = 
   `
