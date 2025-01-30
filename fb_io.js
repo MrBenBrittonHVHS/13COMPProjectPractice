@@ -51,14 +51,11 @@ function fb_joinGame(gameID){
     firebase.database().ref('/gamesInProgress').set(
       {
         [gameID]: {
-          gameOwner: gameOwner,
-          challenger: user.displayName
+          gameOwner: {name: gameOwner},
+          challenger: {name: user.displayName}
         }
       }
-    ).then(()=>{
-      //Set up the game listener
-      
-    })
+    ).then(fb_startGame(gameID, "challenger"))
   }, fb_readError);
 
   firebase.database().ref('/gamesInProgress').set(
@@ -66,6 +63,9 @@ function fb_joinGame(gameID){
       gameID: user.displayName
     }
   )
+}
+function fb_startGame(role){
+  
 }
 /**************************************************************/
 // fb_helloWorld()
