@@ -87,16 +87,23 @@ function gtn_joinGame(game){
 // Game code.
 // Game start set up the game state listener
 // Game State listener passes data to draw page
+/**
+ * Start the game by creating a game listener
+ */
 function gtn_startGame(gameID){
   console.log("Game Started - Start read on")
   firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);
 }
+/**
+ * When the game state changes pass the data to the view page drawer
+ */
 function gtn_gameStateChanged(snapshot){
   console.log("Game State changed ")
   console.log(snapshot.val())
   gameNumber = snapshot.val().number;
   GTNpage_drawGame(snapshot.val());
 }
+
 // When a guess is made 'play' the game, save result to the database
 function gtn_makeGuess(guess){
   console.log("guess made by ", gameRole)
