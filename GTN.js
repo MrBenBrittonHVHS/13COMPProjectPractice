@@ -99,7 +99,7 @@ function gtn_joinGame(game){
         }
       ).then(gtn_startGame(gameID))
     })
-  }, fb_readError);
+  }, fb_error);
 }
 
 // Game code.
