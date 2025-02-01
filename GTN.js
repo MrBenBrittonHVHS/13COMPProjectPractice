@@ -105,6 +105,9 @@ function gtn_gameStateChanged(snapshot){
 }
 
 // When a guess is made 'play' the game, save result to the database
+/**
+ * Called by the webpage - Guess button
+ */
 function gtn_makeGuess(guess){
   console.log("guess made by ", gameRole)
   console.log(guess)
