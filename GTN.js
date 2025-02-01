@@ -157,7 +157,12 @@ function gtn_updateScore(){
       if(theirID in scores){
         theirLosses = scores[theirID].losses+1
       }
-      console.log(myWins, theirLosses)
+      firebase.database().ref('/gameScores/GTN/').update(
+        {
+          [user.uid]: {wins:myWins},
+          [theirID]: {losses:theirLosses}
+        }
+      )
     }
   }
 }
