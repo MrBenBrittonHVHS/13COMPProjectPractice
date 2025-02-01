@@ -24,6 +24,7 @@ function GTNpage_drawGame(gameData){
   
   if("P2" in gameData){
     //The game has started!
+    lastTurn = gameData.lastTurn;
     P1id = gameData.P1;
     P2id = gameData.P2;
     P1 = gameData[P1id]["name"];
