@@ -170,7 +170,7 @@ function gtn_updateScore(){
         {
           [user.uid]: {
             wins:myWins,
-            myLosses:myLosses
+            losses:myLosses
           },
           [theirID]: {
             wins:theirWins,
