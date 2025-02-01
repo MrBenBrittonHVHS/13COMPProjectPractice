@@ -57,7 +57,10 @@ if (P1id == user.uid){
       gameDisplay.innerHTML += `${P2} wins!`
     }else{
 // If the game is ongoing
-      if(lastTurn != user.uid){
+      if((lastTurn != user.uid)||(P1id==P2id)){
+          // It is my turn if I didn't have the last go
+          // OR 
+          // It is me playiung myself (Testing)
         gameDisplay.innerHTML += `
         Your turn. Make your guess!
         <input type="number" id="guess"></input><br>
