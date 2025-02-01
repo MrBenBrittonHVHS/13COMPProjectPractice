@@ -145,23 +145,24 @@ function saveScore(score){
     firebase.database().ref('/gameScores/GeoDash/'+user.uid).once('value', _readScores);
 
     function _readScores(snapshot){
-    if(snapshot.val() == null){
-        //Score is missing, rebuild!
-        firebase.database().ref('/gameScores/GeoDash/'+user.uid).set({lastScore:score,highScore:score));
-    }else{
-        //Score exists, update highscore
-        console.log("callback in saveScore: _readScores")
-        console.log(snapshot.val());
-        var highscore = snapshot.val().highScore;
-        if (score > highscore){
-            highScore = score;
-        }
-        firebase.database().ref('/gameScores/GeoDash/'+user.uid).update(
-            {
-                lastScore: score,
-                highScore: highScore
+        if(snapshot.val() == null){
+            //Score is missing, rebuild!
+            firebase.database().ref('/gameScores/GeoDash/'+user.uid).set({lastScore:score,highScore:score});
+        }else{
+            //Score exists, update highscore
+            console.log("callback in saveScore: _readScores")
+            console.log(snapshot.val());
+            var highscore = snapshot.val().highScore;
+            if (score > highscore){
+                highScore = score;
             }
-        )
+            firebase.database().ref('/gameScores/GeoDash/'+user.uid).update(
+                {
+                    lastScore: score,
+                    highScore: highScore
+                }
+            )
+        }
     }
 }
 /*******************************************************/
