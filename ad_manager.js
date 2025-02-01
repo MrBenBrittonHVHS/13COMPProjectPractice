@@ -64,10 +64,10 @@ const DETAILS = "userdetails"
 //
 
 function fb_readAll(_path,_something,_callback){
-    firebase.database().ref(_path).once('value', _doThis);
-function _doThis(snapshot){
-_callback("ok","path",snapshot, "save","error");
-}
+    firebase.database().ref(_path).once('value', _doThis, fb_error);
+    function _doThis(snapshot){
+    _callback("ok","path",snapshot, "save","error");
+    }
 };
 
 
