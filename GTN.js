@@ -40,13 +40,12 @@ function gtn_createGame(){
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
-      gameOwner: {name: user.displayName, guess:"no guess yet", result: " "},
-      challenger: {name: "Waiting...", guess:"no guess yet", result: " "}
+      gameID: {name: user.displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
 
-// A game was clicked - Start the new game - This involves a whole lot of callbacks
+// A game was joined - Start the new game - This involves a whole lot of callbacks
 
 // Read the gameOwner
 //then
@@ -73,11 +72,10 @@ function gtn_joinGame(game){
       // Create the new game record
       console.log("Creating")
 
-      firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
+      firebase.database().ref('/gamesInProgress/'+gameID+'/').update(
         {
           number: gameNumber,
-          gameOwner: {name: gameOwner, guess:"no guess yet", result: " "},
-          challenger: {name: user.displayName, guess:"no guess yet", result: " "}
+          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "}
         }
       ).then(gtn_startGame(gameID, "challenger"))
     })
