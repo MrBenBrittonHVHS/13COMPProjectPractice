@@ -133,6 +133,14 @@ function gtn_makeGuess(guess){
  *  Add to the other's losses
  */
 function gtn_updateScore(){
-  
+  firebase.database().ref('/gameScores/GTN/').once('value', _readScores());
+
+  function _readScores(snapshot){
+    console.log(readScores);
+    console.log(snapshot.val())
+  }
+    
+
+
 }
 
