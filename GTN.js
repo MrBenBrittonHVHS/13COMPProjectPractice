@@ -126,7 +126,7 @@ function gtn_makeGuess(guess){
 
   var gamePath = "/gamesInProgress/"+gameID+"/"
   var updates = {};
-  updates["guess/"] = guess;
+  updates[user.uid+"/guess/"] = guess;
   updates["lastTurn/"] = user.uid;
 console.log(updates)
   firebase.database().ref(gamePath).update(updates);
