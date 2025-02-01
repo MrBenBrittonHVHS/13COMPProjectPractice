@@ -159,8 +159,14 @@ function gtn_updateScore(){
       }
       firebase.database().ref('/gameScores/GTN/').set(
         {
-          [user.uid]: {wins:myWins},
-          [theirID]: {losses:theirLosses}
+          [user.uid]: {
+            wins:myWins,
+            losses: scores[user.uid].losses
+          },
+          [theirID]: {
+            wins:scores[theirID].wins,
+            losses:theirLosses
+          }
         }
       )
     }
