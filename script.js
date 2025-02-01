@@ -1,7 +1,4 @@
-fb_initialise();
-console.log("Authenticate");
-gtn_authenticate(gtn_checkGames);
-console.log("Google Authentication finished");
+
 /*
 console.log("Writing a 'hello world' message to Firebase");
 gtn_helloWorld();

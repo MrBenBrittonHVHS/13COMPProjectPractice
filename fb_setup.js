@@ -25,3 +25,22 @@ const firebaseConfig = {
   // As soon as you have the script working, delete this log.
   console.log(firebase);	
 }
+
+function fb_authenticate(RUN_NEXT){
+  firebase.auth().onAuthStateChanged((authUser)=>{
+    if (authUser){
+      //User is logged in
+      user = authUser;
+      console.log("Logged in, doing next action")
+      RUN_NEXT();
+    }else{
+      // Sign in using a popup.
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      user = result.user;
+      });
+    }
+  })

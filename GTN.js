@@ -2,6 +2,14 @@ var user;
 var gameRole; //values are challenger or gameOwner
 var gameID;
 var gameNumber;
+
+//Startup
+fb_initialise();
+console.log("Authenticate");
+fb_authenticate(gtn_checkGames);
+console.log("Google Authentication finished");
+
+
 function gtn_authenticate(RUN_NEXT){
   firebase.auth().onAuthStateChanged((authUser)=>{
     if (authUser){
