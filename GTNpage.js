@@ -21,29 +21,29 @@ function GTNpage_updateGameScreen(gameState){
 }
 
 function GTNpage_drawGame(gameData){
-  owner = gameData.gameOwner.name;
-  challenger = gameData.challenger.name;
+  P1 = gameData.P1.name;
+  P2 = gameData.P2.name;
 
-challengerGuess = gameData.challenger.guess;
-challengerResult = gameData.challenger.result;
-ownerGuess = gameData.gameOwner.guess;
-ownerResult = gameData.gameOwner.result;
-console.log(challengerGuess)
-  if (challenger == "Waiting..."){
+P2Guess = gameData.P2.guess;
+P2Result = gameData.P2.result;
+P1Guess = gameData.P1.guess;
+P1Result = gameData.P1.result;
+console.log(P2Guess)
+  if (P2 == "Waiting..."){
     gameDisplay.innerHTML = 
   `<h1> waiting for someone to join your game</h1>`
   }else{  
     gameDisplay.innerHTML = 
   `${gameData.number}
-  <h1>${owner} vs. ${challenger}</h1>
-  ${ownerGuess} ${ownerResult} : ${challengerGuess} ${challengerResult}<br>
+  <h1>${P1} vs. ${P2}</h1>
+  ${P1Guess} ${P1Result} : ${P2Guess} ${P2Result}<br>
 <br>`
 
-  if (ownerResult == "win"){
-    gameDisplay.innerHTML += `${owner} wins!`
+  if (P1Result == "win"){
+    gameDisplay.innerHTML += `${P1} wins!`
 
-  }else if (challengerResult == "win"){
-    gameDisplay.innerHTML += `${challenger} wins!`
+  }else if (P2Result == "win"){
+    gameDisplay.innerHTML += `${P2} wins!`
 
   }else{
       gameDisplay.innerHTML += `

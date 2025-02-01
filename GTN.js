@@ -40,7 +40,7 @@ function gtn_createGame(){
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
-      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
+      P1: {id:user.uid,name: user.displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
@@ -60,7 +60,6 @@ function gtn_joinGame(game){
   firebase.database().ref('/waitingGames').off()
   // Start the new game
   // Set up the game globals
-  gameRole = "challenger";
   gameID = game;
   gameNumber = Math.floor(Math.random()*100);
   // Get the name of the owner and create the new game record
@@ -75,9 +74,9 @@ function gtn_joinGame(game){
       firebase.database().ref('/gamesInProgress/'+gameID+'/').update(
         {
           number: gameNumber,
-          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "}
+          P2: {id:user.uid, name: user.displayName, guess:"no guess yet", result: " "}
         }
-      ).then(gtn_startGame(gameID, "challenger"))
+      ).then(gtn_startGame(gameID))
     })
   }, fb_readError);
 }
