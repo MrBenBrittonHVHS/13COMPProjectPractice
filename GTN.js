@@ -124,7 +124,6 @@ function gtn_gameStateChanged(snapshot){
 function gtn_makeGuess(guess){
   console.log("gtn_makeGuess")
 
-  // Create the new game record
   var gamePath = "/gamesInProgress/"+gameID+"/"
   var updates = {};
   updates[gamePath+user.uid+"/guess/"] = guess;
