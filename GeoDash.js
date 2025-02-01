@@ -154,6 +154,8 @@ function saveScore(score){
             console.log("callback in saveScore: _readScores")
             console.log(snapshot.val());
             var highScore = snapshot.val().highScore;
+            console.log(highScore);
+
             if (score > highScore){
                 highScore = score;
             }
