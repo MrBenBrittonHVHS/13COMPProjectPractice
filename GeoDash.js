@@ -18,6 +18,8 @@ var spawnDist = 0;
 var nextSpawn = 0;
 var score = 0;
 var player;
+var lastScore = "";
+var highScore = "";
   
 var screenSelector = "start";  
 
@@ -31,10 +33,10 @@ fb_authenticate(()=>{});
 
 function setup() {
     console.log("setup: ");
-    
+    readScore();
     cnv= new Canvas(800, 600);
     
-        cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
+    cnv= new Canvas(SCREEN_WIDTH, SCREEN_HEIGHT);
     obstacles = new Group();
 
     floor =  new Sprite(SCREEN_WIDTH/2,  SCREEN_HEIGHT, SCREEN_WIDTH, 4, 's');
@@ -99,7 +101,10 @@ function startScreen(){
     strokeWeight(4);
     text("Welcome to the game", 50, 50);
     textSize(24);
-    text("Press any key to start", 50, 110);
+    text("Press any key to start", 50, 80);
+    textSize(14);
+    text("your last score was "+lastScore, 50, 150);    
+    text("your best score is "+highScore, 220, 150);
 }
 
 function gameScreen(){
@@ -115,6 +120,9 @@ function gameScreen(){
     stroke(0);
     strokeWeight(4);
     text(score, 50, 50);
+    textSize(14);
+    text("your last score was "+lastScore, 50, 150);    
+    text("your best score is "+highScore, 220, 150);
 }
 
 function endScreen(){
@@ -137,6 +145,18 @@ function resetGame(){
     player.color = color("purple");
     player.collides(obstacles, youDead);
     score = 0;
+}
+
+function readScore(){
+    firebase.database().ref('/gameScores/GeoDash/'+user.uid).once('value', _readScores);
+
+    function _readScores(snapshot){
+        if(snapshot.val() == null){
+        }else{
+        lastScore = snapshot.val().lastScore;
+        highScore = snapshot.val().highScore
+        }
+    }
 }
 
 function saveScore(score){
