@@ -133,7 +133,7 @@ function gtn_makeGuess(guess){
  *  Add to the other's losses
  */
 function gtn_updateScore(){
-  firebase.database().ref('/gamesInProgress/gameID/').once('value', _readPlayers);
+  firebase.database().ref('/gamesInProgress/'+gameID+'/').once('value', _readPlayers);
   var theirID;
   function _readPlayers(snapshot){
     if(snapshot.val().P1 == user.uid)
