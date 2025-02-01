@@ -133,16 +133,34 @@ function gtn_makeGuess(guess){
  *  Add to the other's losses
  */
 function gtn_updateScore(){
-  firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
-
-  function _readScores(snapshot){
-    console.log(snapshot.val());
-    if("GTN" in snapshot.val()){
-      console.log("Yay")
-    }else{
-      console.log("Nay!")
+  firebase.database().ref('/gamesInProgress/gameID/').once('value', _readPlayers);
+  var theirID;
+  function _readPlayers(snapshot){
+    if(snapshot.val().P1 == user.uid)
+      //I am player 1;
+      theirID = snapshot.val().P2;
+    else{
+      theirID = snapshot.val().P1;
     }
-    console.log(snapshot.val())
+    console.log("MyID = "+user.uid)
+    console.log("TheirID = "+theirID)
+    firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
+
+    function _readScores(snapshot){
+      console.log(snapshot.val());
+      var scores = snapshot.val();
+      var myWins = 1;
+      var theirLosses = 1;
+      if(user.uid in scores){
+        myWins = scores[user.uid].wins+1;
+      }
+      if(theirID in scores){}
+        theirLosses = = scores[theirID].losses+1
+      }
+      console.log(snapshot.val())
+    }
   }
+
+ 
 }
 
