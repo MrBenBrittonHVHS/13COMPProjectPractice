@@ -115,7 +115,7 @@ function gtn_makeGuess(guess){
   var updates = {};
   updates[gamePath+user.uid,+"/guess/"] = guess;
   updates[gamePath+"lastTurn"] = user.uid;
-
+console.log(updates)
   firebase.database().ref(gamePath+"guess/").update(updates);
   
   var result;
