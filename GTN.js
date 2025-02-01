@@ -108,11 +108,8 @@ function gtn_gameStateChanged(snapshot){
  * Called by the webpage - Guess button
  */
 function gtn_makeGuess(guess){
-  console.log("guess made by ", gameRole)
-  console.log(guess)
-  console.log(gameNumber)
   // Create the new game record
-  var gamePath = "/gamesInProgress/"+gameID+"/"+gameRole+"/"
+  var gamePath = "/gamesInProgress/"+gameID+"/"+user.uid+"/"
   firebase.database().ref(gamePath+"guess/").set(guess);
   var result;
   if (guess < gameNumber){
