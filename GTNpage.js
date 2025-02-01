@@ -16,11 +16,11 @@ function GTNpage_updateGameList(gameList){
   }
 }
 
-function GTNpagepage_updateGameScreen(gameState){
+function GTNpage_updateGameScreen(gameState){
   console.log("GameListener running")
 }
 
-function GTNpagepage_drawGame(gameData){
+function GTNpage_drawGame(gameData){
   owner = gameData.gameOwner.name;
   challenger = gameData.challenger.name;
 
