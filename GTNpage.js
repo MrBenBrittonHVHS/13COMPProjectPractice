@@ -21,21 +21,21 @@ function GTNpage_updateGameScreen(gameState){
 }
 
 function GTNpage_drawGame(gameData){
-  alert()
   
-  if(Object.keys(gameData).length==1){
+  if(Object.keys(gameData).length<3){
     //The game has not started, waiting for someone to join
     gameDisplay.innerHTML = 
     `<h1> waiting for someone to join your game</h1>`
   }else{
     //The game has started!
-    P1 = gameData.P1.name;
-    P2 = gameData.P2.name;
-    
-    P2Guess = gameData.P2.guess;
-    P2Result = gameData.P2.result;
-    P1Guess = gameData.P1.guess;
-    P1Result = gameData.P1.result;
+    P1id = gameData.P1;
+    P2id = gameData.P2;
+    P1 = gameData[P1id]["name"];
+    P2 = gameData[P2id]["name"];    
+    P2Guess = gameData[P2id]["guess"];
+    P2Result = gameData[P2id]["result"];
+    P1Guess = gameData[P1id]["guess"];
+    P1Result = gameData[P1id]["result"];
     console.log(P2Guess)
 
     gameDisplay.innerHTML = 
