@@ -23,6 +23,11 @@ var highScore = "";
   
 var screenSelector = "start";  
 
+const displayName = sessionStorage.getItem("displayName");
+const photoURL = sessionStorage.getItem("photoURL");
+const UID = sessionStorage.getItem("UID");
+
+
 var obstacles;
 /*******************************************************/
 // setup()
@@ -181,6 +186,7 @@ function saveScore(score){
             }
             firebase.database().ref('/gameScores/GeoDash/'+user.uid).update(
                 {
+                    user: displayName,
                     lastScore: score,
                     highScore: highScore
                 }
