@@ -19,10 +19,10 @@ function gtn_checkGames(){
 }
 
 /***
- * waiting games listener. This 
+ * waiting games listener. Passes the waiting games list to the page display function 
  */
 function gtn_readGamesList(snapshot) {
-  page_updateGameList( snapshot.val())
+  GTNpage_updateGameList( snapshot.val())
 }
 
 
@@ -95,7 +95,7 @@ function gtn_gameStateChanged(snapshot){
   console.log("Game State changed ")
   console.log(snapshot.val())
   gameNumber = snapshot.val().number;
-  page_drawGame(snapshot.val());
+  GTNpage_drawGame(snapshot.val());
 }
 // When a guess is made 'play' the game, save result to the database
 function gtn_makeGuess(guess){
