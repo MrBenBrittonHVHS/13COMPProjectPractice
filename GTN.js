@@ -30,9 +30,7 @@ function gtn_authenticate(RUN_NEXT){
   })
 
 }
-function gtn_checkUser(){
-  console.log(user)
-}
+
 function gtn_checkGames(){
   console.log("Checking Games")
   //console.log(database)
