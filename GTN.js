@@ -41,6 +41,7 @@ function gtn_createGame(){
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
       P1: user.uid,
+      lastTurn: user.uid,
       [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
@@ -113,7 +114,7 @@ function gtn_makeGuess(guess){
   var gamePath = "/gamesInProgress/"+gameID+"/"+user.uid+"/"
   var updates = {};
   updates[gamePath+"guess/"] = guess;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  updates[gamePath+"lastTurn"] = user.uid;
 
   firebase.database().ref(gamePath+"guess/").update(updates);
   var result;
