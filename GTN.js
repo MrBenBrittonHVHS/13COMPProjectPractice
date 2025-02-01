@@ -41,7 +41,7 @@ function gtn_createGame(){
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
       P1: user.uid,
-      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " ", activePlayer:false},
+      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
@@ -76,7 +76,8 @@ function gtn_joinGame(game){
         {
           number: gameNumber,
           P2: user.uid,
-          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " ",activePlayer:true}
+          activePlayer:"P2",
+          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "}
         }
       ).then(gtn_startGame(gameID))
     })
@@ -110,7 +111,11 @@ function gtn_gameStateChanged(snapshot){
 function gtn_makeGuess(guess){
   // Create the new game record
   var gamePath = "/gamesInProgress/"+gameID+"/"+user.uid+"/"
-  firebase.database().ref(gamePath+"guess/").set(guess);
+  var updates = {};
+  updates[gamePath+"guess/"] = guess;
+  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+  firebase.database().ref(gamePath+"guess/").update(updates);
   var result;
   if (guess < gameNumber){
     result = 'too low';
