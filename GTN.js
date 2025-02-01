@@ -54,7 +54,7 @@ function gtn_createGame(){
 //then
 // Write the GameInProgress Record
 //then
-// start the game listener
+// start the game (listener)
 function gtn_joinGame(game){
   console.log("    Joining game...", game)
   // Detatch the waiting game listener
@@ -84,12 +84,12 @@ function gtn_joinGame(game){
   }, fb_readError);
 }
 
-// Game flow code.
+// Game code.
 // Game start set up the game state listener
 // Game State listener passes data to draw page
 function gtn_startGame(gameID){
-console.log("Game Started - Start read on")
-firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);
+  console.log("Game Started - Start read on")
+  firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);
 }
 function gtn_gameStateChanged(snapshot){
   console.log("Game State changed ")
