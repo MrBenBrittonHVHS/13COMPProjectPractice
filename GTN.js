@@ -157,7 +157,7 @@ function gtn_updateScore(){
         myWins = scores[user.uid].wins+1;
       }
       if(user.uid in scores && "losses" in scores[user.uid]){
-        mylosses = scores[user.uid].losses;
+        myLosses = scores[user.uid].losses;
       }
       if(theirID in scores && "losses" in scores[theirID]){
         theirLosses = scores[theirID].losses+1
