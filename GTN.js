@@ -171,48 +171,49 @@ function gtn_updateScore(){
     firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
 
     function _readScores(snapshot){
-      if(snapshot.vals == null){
+      if(snapshot.val() == null){
         //ScoreTable is missing, rebuild!
         console.log("Scores Table missing, rebuilding")
-        firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(_readScores);
-      }
-      console.log("callback in gtn_updateScore: _readScores")
+        firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);
+      }else{
+        console.log("callback in gtn_updateScore: _readScores")
 
-      console.log(snapshot.val());
-      var scores = snapshot.val();
-      var myWins = 1;
-      var myLosses = 0;
-      var theirLosses = 1;
-      var theirWins = 0;
-      if(user.uid in scores){
-        if("wins" in scores[user.uid]){
-          myWins = scores[user.uid].wins+1;
-        }
-        if("losses" in scores[user.uid]){
-          myLosses = scores[user.uid].losses;
-        }
-      }
-      if(theirID in scores){
-        if("losses" in scores[theirID]){
-          theirLosses = scores[theirID].losses+1
-        }
-        if("wins" in scores[theirID]){
-          theirWins = scores[theirID].wins
-        }
-      )
-      console.log("update..."+theirLosses)
-      firebase.database().ref('/gameScores/GTN/').update(
-        {
-          [user.uid]: {
-            wins:myWins,
-            losses:myLosses
-          },
-          [theirID]: {
-            wins:theirWins,
-            losses:theirLosses
+        console.log(snapshot.val());
+        var scores = snapshot.val();
+        var myWins = 1;
+        var myLosses = 0;
+        var theirLosses = 1;
+        var theirWins = 0;
+        if(user.uid in scores){
+          if("wins" in scores[user.uid]){
+            myWins = scores[user.uid].wins+1;
+          }
+          if("losses" in scores[user.uid]){
+            myLosses = scores[user.uid].losses;
           }
         }
-      )
+        if(theirID in scores){
+          if("losses" in scores[theirID]){
+            theirLosses = scores[theirID].losses+1
+          }
+          if("wins" in scores[theirID]){
+            theirWins = scores[theirID].wins
+          }
+        }
+        console.log("update..."+theirLosses)
+        firebase.database().ref('/gameScores/GTN/').update(
+          {
+            [user.uid]: {
+              wins:myWins,
+              losses:myLosses
+            },
+            [theirID]: {
+              wins:theirWins,
+              losses:theirLosses
+            }
+          }
+        )
+      }
     }
   }
 }
