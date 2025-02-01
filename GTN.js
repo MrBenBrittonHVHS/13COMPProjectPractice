@@ -118,12 +118,21 @@ function gtn_makeGuess(guess){
     result = 'too high';
   }else{
     result = 'win';
-    gtn_updateScore(user.uid, "win");
-    gtn_updateScore(user.uid, "lose");
-    
   }
   firebase.database().ref(gamePath+"/result/").set(result);
   //Update scores in the database
+  gtn_updateScore();
+}
 
+/**
+ * The game was won. Update the scores.
+ * This involves:
+ *  Getting the UID of P1 & P2
+ *  Getting the score for P1 & P2
+ *  Add to my wins
+ *  Add to the other's losses
+ */
+function gtn_updateScore(){
+  
 }
 
