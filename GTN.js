@@ -13,6 +13,8 @@ console.log("Google Authentication finished");
  * Landed on page. Create the read listener on the waiting games table
  */
 function gtn_checkGames(){
+  console.log("gtn_checkGames")
+
   console.log("Checking Games")
   //console.log(database)
   firebase.database().ref('/waitingGames').on('value', gtn_readGamesList, fb_readError);
@@ -22,6 +24,8 @@ function gtn_checkGames(){
  * waiting games listener. Passes the waiting games list to the page display function 
  */
 function gtn_readGamesList(snapshot) {
+  console.log("gtn_readGamesList")
+
   GTNpage_updateGameList( snapshot.val())
 }
 
@@ -33,6 +37,7 @@ function gtn_readGamesList(snapshot) {
 // Start listening for my game to start
 
 function gtn_createGame(){
+  console.log("gtn_createGame")
   firebase.database().ref('/waitingGames').off()
 
   firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
@@ -57,6 +62,8 @@ function gtn_createGame(){
 //then
 // start the game (listener)
 function gtn_joinGame(game){
+  console.log("gtn_joinGame")
+
   console.log("    Joining game...", game)
   // Detatch the waiting game listener
   firebase.database().ref('/waitingGames').off()
@@ -67,10 +74,14 @@ function gtn_joinGame(game){
   // Get the name of the owner and create the new game record
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
+    console.log("callback in gtn_joinGame: get userID")
+
     gameOwner = snapshot.val();
     //Delete the waiting game
     firebase.database().ref('/waitingGames/'+gameID+'/').set(null).then(()=>{
       // Create the new game record
+      console.log("callback in gtn_joinGame: delete waiting game")
+
       console.log("Creating")
 
       firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
@@ -92,6 +103,7 @@ function gtn_joinGame(game){
  * Start the game by creating a game listener
  */
 function gtn_startGame(gameID){
+  console.log("gtn_startGame")
   console.log("Game Started - Start read on")
   firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);
 }
@@ -99,7 +111,7 @@ function gtn_startGame(gameID){
  * When the game state changes pass the data to the view page drawer
  */
 function gtn_gameStateChanged(snapshot){
-  console.log("Game State changed ")
+  console.log("gtn_gameStateChanged")
   console.log(snapshot.val())
   gameNumber = snapshot.val().number;
   GTNpage_drawGame(snapshot.val());
@@ -110,6 +122,8 @@ function gtn_gameStateChanged(snapshot){
  * Called by the webpage - Guess button
  */
 function gtn_makeGuess(guess){
+  console.log("gtn_makeGuess")
+
   // Create the new game record
   var gamePath = "/gamesInProgress/"+gameID+"/"
   var updates = {};
@@ -140,9 +154,13 @@ console.log(updates)
  *  Add to the other's losses
  */
 function gtn_updateScore(){
+  console.log("gtn_updateScore")
+
   firebase.database().ref('/gamesInProgress/'+gameID+'/').once('value', _readPlayers);
   var theirID;
   function _readPlayers(snapshot){
+    console.log("callback in gtn_updateScore: _readPlayers")
+
     if(snapshot.val().P1 == user.uid)
       //I am player 1;
       theirID = snapshot.val().P2;
@@ -154,6 +172,8 @@ function gtn_updateScore(){
     firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
 
     function _readScores(snapshot){
+      console.log("callback in gtn_updateScore: _readScores")
+
       console.log(snapshot.val());
       var scores = snapshot.val();
       var myWins = 1;
