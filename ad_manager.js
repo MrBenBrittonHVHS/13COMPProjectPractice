@@ -66,8 +66,10 @@ console.log('%c ad_manager.js \n--------------------',
 /**************************************************************/
 
 function fb_readAll(_path,_something,_callback){
-    firebase.database().ref(_path).once('value', _callback);
-
+    firebase.database().ref(_path).once('value', _doThis);
+function _doThis(snapshot){
+_callback("ok","path",snapshot, "save","error");
+}
 };
 
 
