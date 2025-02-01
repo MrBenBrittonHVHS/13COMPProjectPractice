@@ -54,6 +54,11 @@ const COLAD_B = '#F0E68C';
 console.log('%c ad_manager.js \n--------------------',
             'color: blue; background-color: white;');
 
+
+            function fb_readAll(){};
+            
+
+
 /**************************************************************/
 // ad_load()
 // Called by ad_manager.html onload
