@@ -12,7 +12,6 @@ function readUserDetails(){
     function _readDetails(snapshot){
         if(snapshot.val() == null){
             //User Doesn't exist send to sign up page
-            window.location.href = "signUp.html"
         }  else {
             alert ("welcome")
         }
