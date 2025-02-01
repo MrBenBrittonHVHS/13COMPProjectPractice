@@ -184,18 +184,22 @@ function gtn_updateScore(){
       var myLosses = 0;
       var theirLosses = 1;
       var theirWins = 0;
-      if(user.uid in scores && "wins" in scores[user.uid]){
-        myWins = scores[user.uid].wins+1;
+      if(user.uid in scores){
+        if("wins" in scores[user.uid]){
+          myWins = scores[user.uid].wins+1;
+        }
+        if("losses" in scores[user.uid]){
+          myLosses = scores[user.uid].losses;
+        }
       }
-      if(user.uid in scores && "losses" in scores[user.uid]){
-        myLosses = scores[user.uid].losses;
-      }
-      if(theirID in scores && "losses" in scores[theirID]){
-        theirLosses = scores[theirID].losses+1
-      }
-      if(theirID in scores && "wins" in scores[theirID]){
-        theirWins = scores[theirID].wins
-      }
+      if(theirID in scores){
+        if("losses" in scores[theirID]){
+          theirLosses = scores[theirID].losses+1
+        }
+        if("wins" in scores[theirID]){
+          theirWins = scores[theirID].wins
+        }
+      )
       console.log("update..."+theirLosses)
       firebase.database().ref('/gameScores/GTN/').update(
         {
