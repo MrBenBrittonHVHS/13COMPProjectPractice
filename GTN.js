@@ -117,6 +117,7 @@ function gtn_makeGuess(guess){
   updates[gamePath+"lastTurn"] = user.uid;
 
   firebase.database().ref(gamePath+"guess/").update(updates);
+  
   var result;
   if (guess < gameNumber){
     result = 'too low';
