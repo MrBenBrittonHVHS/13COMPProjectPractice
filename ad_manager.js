@@ -178,7 +178,7 @@ function ad_processUSERReadAll(_result, _path, _snapshot, _save, _error) {
         //photoURL:   childData.photoURL,  
         name: childData.name,
         age: childData.age,
-        //uid: childKey
+        uid: childKey
         //   more fields ????
       });
     });
