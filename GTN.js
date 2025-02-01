@@ -3,6 +3,12 @@ var gameRole; //values are challenger or gameOwner
 var gameID;
 var gameNumber;
 
+
+const displayName = sessionStorage.getItem("displayName");
+const photoURL = sessionStorage.getItem("photoURL");
+const UID = sessionStorage.getItem("UID");
+
+
 //Startup
 fb_initialise();
 console.log("Authenticate");
@@ -40,14 +46,14 @@ function gtn_createGame(){
   console.log("gtn_createGame")
   firebase.database().ref('/waitingGames').off()
 
-  firebase.database().ref('/waitingGames/'+user.uid).set(user.displayName)
+  firebase.database().ref('/waitingGames/'+user.uid).set(displayName)
   gameRole = "gameOwner";
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
       P1: user.uid,
       lastTurn: user.uid,
-      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
+      [user.uid]: {name: displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
@@ -89,7 +95,7 @@ function gtn_joinGame(game){
           number: gameNumber,
           P2: user.uid,
           activePlayer:"P2",
-          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "}
+          [user.uid]: {name: displayName, guess:"no guess yet", result: " "}
         }
       ).then(gtn_startGame(gameID))
     })
