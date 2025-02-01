@@ -48,12 +48,12 @@ if (P1id == user.uid){
     gameDisplay.innerHTML = 
     `${gameData.number}
     <div style="display:flex">
-    <div>
+    <div style="width:40%">
       <h1>${P1}</h1>
       ${P1Guess} ${P1Result}
     </div>
-    <div><h1>vs.</h1></div>
-    <div>
+    <div style="width:15%"><h1>vs.</h1></div>
+    <div style="width:40%">
       <h1>${P2}</h1>
       ${P2Guess} ${P2Result}
     </div>
