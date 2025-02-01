@@ -15,7 +15,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script> 
   <!-- firebase end ******************************************-->
   <script src="fb_setup.js"></script> 
-  <script src="index.js"></script> 
+  <script src="signup.js"></script> 
 
 </head>
 
@@ -27,18 +27,19 @@ Please fill in this form and we'll get you started!
 </p>
 <input type=text id=displayName><input>
 <p>
-    how old are you?
+    How old are you?
 </p>
 <input type=number id=age><input>
 <p>
     Gender?
 </p>
-<select name="cars" id="cars">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
-  </select>
+<select id="gender">
+    <option value="yes">Volvo</option>
+    <option value="no">Saab</option>
+    <option value="maybe">Mercedes</option>
+</select>
+<button onClick="signup_register()">Register!</button>
+
 </body>
 
 </html>
