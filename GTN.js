@@ -113,7 +113,7 @@ function gtn_makeGuess(guess){
   // Create the new game record
   var gamePath = "/gamesInProgress/"+gameID+"/"
   var updates = {};
-  updates[gamePath+user.uid,+"/guess/"] = guess;
+  updates[gamePath+user.uid+"/guess/"] = guess;
   updates[gamePath+"lastTurn"] = user.uid;
 console.log(updates)
   firebase.database().ref(gamePath+"guess/").update(updates);
