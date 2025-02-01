@@ -40,7 +40,7 @@ function gtn_createGame(){
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
-      gameID: {name: user.displayName, guess:"no guess yet", result: " "},
+      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
