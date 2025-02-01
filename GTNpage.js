@@ -47,8 +47,17 @@ if (P1id == user.uid){
 
     gameDisplay.innerHTML = 
     `${gameData.number}
-    <h1>${P1} vs. ${P2}</h1>
-    ${P1Guess} ${P1Result} : ${P2Guess} ${P2Result}<br>
+    <div style="display:flex">
+    <div>
+      <h1>${P1}</h1>
+      ${P1Guess} ${P1Result}
+    </div>
+    <div><h1>vs.</h1></div>
+    <div>
+      <h1>${P2}</h1>
+      ${P2Guess} ${P2Result}
+    </div>
+</div>
   <br>`
 // If the game has been won...
     if (P1Result == "win"){
