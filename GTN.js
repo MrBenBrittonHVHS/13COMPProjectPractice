@@ -111,9 +111,9 @@ function gtn_gameStateChanged(snapshot){
  */
 function gtn_makeGuess(guess){
   // Create the new game record
-  var gamePath = "/gamesInProgress/"+gameID+"/"+user.uid+"/"
+  var gamePath = "/gamesInProgress/"+gameID+"/"
   var updates = {};
-  updates[gamePath+"guess/"] = guess;
+  updates[gamePath+user.uid,+"/guess/"] = guess;
   updates[gamePath+"lastTurn"] = user.uid;
 
   firebase.database().ref(gamePath+"guess/").update(updates);
