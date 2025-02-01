@@ -125,11 +125,7 @@ function gtn_makeGuess(guess){
   console.log("gtn_makeGuess")
 
   var gamePath = "/gamesInProgress/"+gameID+"/"
-  var updates = {};
-  updates[user.uid+"/guess/"] = guess;
-  updates["lastTurn/"] = user.uid;
-console.log(updates)
-  firebase.database().ref(gamePath).update(updates);
+
   
   var result;
   if (guess < gameNumber){
@@ -138,10 +134,15 @@ console.log(updates)
     result = 'too high';
   }else{
     result = 'win';
+    //Update scores in the database
+     gtn_updateScore();
   }
-  firebase.database().ref(gamePath+"/result/").set(result);
-  //Update scores in the database
-  gtn_updateScore();
+  var updates = {};
+  updates[user.uid+"/guess/"] = guess;
+  updates[user.uid+"/result/"] = result;
+  updates["lastTurn/"] = user.uid;
+  console.log(updates)
+  firebase.database().ref(gamePath).update(updates);
 }
 
 /**
