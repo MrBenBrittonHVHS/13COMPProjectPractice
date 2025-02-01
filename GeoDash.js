@@ -27,7 +27,7 @@ var obstacles;
 /*******************************************************/
 var user;
 fb_initialise();
-fb_authenticate();
+fb_authenticate(()=>{});
 
 function setup() {
     console.log("setup: ");
