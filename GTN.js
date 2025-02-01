@@ -118,10 +118,12 @@ function gtn_makeGuess(guess){
     result = 'too high';
   }else{
     result = 'win';
+    gtn_updateScore(user.uid, "win");
+    gtn_updateScore(user.uid, "lose");
     
   }
   firebase.database().ref(gamePath+"/result/").set(result);
   //Update scores in the database
-  
+
 }
 
