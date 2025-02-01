@@ -84,6 +84,7 @@ function youDead(_player, _obstacle){
     screenSelector = "end";
     player.remove();
     obstacles.removeAll();
+    saveScore(score);
 }
 
 // Main screen functions
@@ -129,7 +130,6 @@ function endScreen(){
     text("your score was: "+score, 50, 110);
     textSize(14);
     text("press any key to restart", 50, 150);
-    saveScore(score);
 }
 
 function resetGame(){
