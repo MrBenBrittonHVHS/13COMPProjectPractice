@@ -137,7 +137,7 @@ function gtn_updateScore(){
 
   function _readScores(snapshot){
     console.log("readScores");
-    if(user.uid in snapshot.val()){
+    if("GTN" in snapshot.val()){
       console.log("Yay")
     }else{
       console.log("Nay!")
