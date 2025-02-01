@@ -121,6 +121,7 @@ function gtn_makeGuess(guess){
     
   }
   firebase.database().ref(gamePath+"/result/").set(result);
-
+  //Update scores in the database
+  
 }
 
