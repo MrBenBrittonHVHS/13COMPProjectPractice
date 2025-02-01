@@ -118,7 +118,7 @@ function ad_BB() {
   ad_alterClass('ad_btn', 'grey');
   document.getElementById("b_adBB").style.backgroundColor = "cyan";
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
-  fb_readAll(BB, null, ad_processBBReadAll);                            //<=====
+  //fb_readAll(BB, null, ad_processBBReadAll);                            //<=====
 }
 
 /**************************************************************/
@@ -135,7 +135,7 @@ function ad_SI() {
   ad_alterClass('ad_btn', 'grey');
   document.getElementById("b_adSI").style.backgroundColor = "cyan";
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
-  fb_readAll(SI, null, ad_processSIReadAll);                            //<=====
+  //fb_readAll(SI, null, ad_processSIReadAll);                            //<=====
 }
 
 /**************************************************************/
