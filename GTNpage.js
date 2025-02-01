@@ -34,7 +34,14 @@ function GTNpage_drawGame(gameData){
     P1Guess = gameData[P1id]["guess"];
     P1Result = gameData[P1id]["result"];
 
-if (whoAmI
+    //Who am I - Detect which player I am
+if (P1id == user.uid){
+  //I am Player1
+  theirName = P2;
+}else{
+  // I am player 2
+  theirName = P1;
+}
 
     console.log(P2Guess)
 
@@ -50,17 +57,18 @@ if (whoAmI
       gameDisplay.innerHTML += `${P2} wins!`
     }else{
 // If the game is ongoing
-      if(lastTurn == user.uid){
-        //You had the last turn - you need to wait
+      if(lastTurn != user.uid){
         gameDisplay.innerHTML += `
-        Waiting for 
-          `
-      }
-        gameDisplay.innerHTML += `
-        Make your guess!
+        Your turn. Make your guess!
         <input type="number" id="guess"></input><br>
         <button onclick="gtn_makeGuess(getElementById('guess').value)">Guess</button>
           `
+      }else{
+        //You had the last turn - you need to wait
+        gameDisplay.innerHTML += `
+        Waiting for ${theirName} To make a move
+          `
+      }
     }
   }else{
     //The game has not started, waiting for someone to join
