@@ -125,6 +125,7 @@ function endScreen(){
     text("your score was: "+score, 50, 110);
     textSize(14);
     text("press any key to restart", 50, 150);
+    saveScore();
 }
 
 function resetGame(){
@@ -134,6 +135,59 @@ function resetGame(){
     score = 0;
 }
 
+function saveScore(){
+        console.log("saveScore")
+
+          firebase.database().ref('/gameScores/GeoDash/').once('value', _readScores);
+      
+          function _readScores(snapshot){
+            if(snapshot.val() == null){
+              //ScoreTable is missing, rebuild!
+              console.log("Scores Table missing, rebuilding")
+              firebase.database().ref('/gameScores/GeoDash/').set({dummyID:"dummyScore"}).then(saveScore);
+            }else{
+              console.log("callback in saveScore: _readScores")
+      
+              console.log(snapshot.val());
+              var scores = snapshot.val();
+              var myWins = 1;
+              var myLosses = 0;
+              var theirLosses = 1;
+              var theirWins = 0;
+              if(user.uid in scores){
+                if("wins" in scores[user.uid]){
+                  myWins = scores[user.uid].wins+1;
+                }
+                if("losses" in scores[user.uid]){
+                  myLosses = scores[user.uid].losses;
+                }
+              }
+              if(theirID in scores){
+                if("losses" in scores[theirID]){
+                  theirLosses = scores[theirID].losses+1
+                }
+                if("wins" in scores[theirID]){
+                  theirWins = scores[theirID].wins
+                }
+              }
+              console.log("update..."+theirLosses)
+              firebase.database().ref('/gameScores/GTN/').update(
+                {
+                  [user.uid]: {
+                    wins:myWins,
+                    losses:myLosses
+                  },
+                  [theirID]: {
+                    wins:theirWins,
+                    losses:theirLosses
+                  }
+                }
+              )
+            }
+          }
+        }
+      }
+}
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
