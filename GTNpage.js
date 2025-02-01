@@ -21,7 +21,13 @@ function GTNpage_updateGameScreen(gameState){
 }
 
 function GTNpage_drawGame(gameData){
-  if("P2" in gameData){
+  alert()
+  
+  if(Object.keys(gameData).length==1){
+    //The game has not started, waiting for someone to join
+    gameDisplay.innerHTML = 
+    `<h1> waiting for someone to join your game</h1>`
+  }else{
     //The game has started!
     P1 = gameData.P1.name;
     P2 = gameData.P2.name;
@@ -49,9 +55,5 @@ function GTNpage_drawGame(gameData){
         <button onclick="gtn_makeGuess(getElementById('guess').value)">Guess</button>
           `
     }
-  }else{
-    //The game has not started, waiting for someone to join
-      gameDisplay.innerHTML = 
-    `<h1> waiting for someone to join your game</h1>`
   }
 }
