@@ -154,13 +154,10 @@ function gtn_updateScore(){
       if(user.uid in scores){
         myWins = scores[user.uid].wins+1;
       }
-      if(theirID in scores){}
-        theirLosses = = scores[theirID].losses+1
+      if(theirID in scores){
+        theirLosses = scores[theirID].losses+1
       }
-      console.log(snapshot.val())
+      console.log(myWins, theirLosses)
     }
   }
-
- 
 }
-
