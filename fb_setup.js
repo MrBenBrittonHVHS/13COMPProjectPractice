@@ -57,6 +57,10 @@ function fb_authenticate(RUN_NEXT){
   }
 
   function fb_error(error) {
-    console.log("There was a Firebase error");
-    console.error(error);
+    if (error){
+      console.log("There was a Firebase error");
+      console.error(error);
+    }else{
+      //All went well
+    }
   }
