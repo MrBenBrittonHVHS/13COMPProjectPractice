@@ -41,7 +41,7 @@ function gtn_createGame(){
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
       P1: user.uid,
-      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "},
+      [user.uid]: {name: user.displayName, guess:"no guess yet", result: " ", activePlayer:false},
     }
   ).then(gtn_startGame(gameID, "gameOwner"))
 }
@@ -76,7 +76,7 @@ function gtn_joinGame(game){
         {
           number: gameNumber,
           P2: user.uid,
-          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " "}
+          [user.uid]: {name: user.displayName, guess:"no guess yet", result: " ",activePlayer:true}
         }
       ).then(gtn_startGame(gameID))
     })
