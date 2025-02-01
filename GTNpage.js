@@ -21,36 +21,37 @@ function GTNpage_updateGameScreen(gameState){
 }
 
 function GTNpage_drawGame(gameData){
-  P1 = gameData.P1.name;
-  P2 = gameData.P2.name;
+  if("P2" in gameData){
+    //The game has started!
+    P1 = gameData.P1.name;
+    P2 = gameData.P2.name;
+    
+    P2Guess = gameData.P2.guess;
+    P2Result = gameData.P2.result;
+    P1Guess = gameData.P1.guess;
+    P1Result = gameData.P1.result;
+    console.log(P2Guess)
 
-P2Guess = gameData.P2.guess;
-P2Result = gameData.P2.result;
-P1Guess = gameData.P1.guess;
-P1Result = gameData.P1.result;
-console.log(P2Guess)
-  if (P2 == "Waiting..."){
     gameDisplay.innerHTML = 
-  `<h1> waiting for someone to join your game</h1>`
-  }else{  
-    gameDisplay.innerHTML = 
-  `${gameData.number}
-  <h1>${P1} vs. ${P2}</h1>
-  ${P1Guess} ${P1Result} : ${P2Guess} ${P2Result}<br>
-<br>`
+    `${gameData.number}
+    <h1>${P1} vs. ${P2}</h1>
+    ${P1Guess} ${P1Result} : ${P2Guess} ${P2Result}<br>
+  <br>`
 
-  if (P1Result == "win"){
-    gameDisplay.innerHTML += `${P1} wins!`
-
-  }else if (P2Result == "win"){
-    gameDisplay.innerHTML += `${P2} wins!`
-
+    if (P1Result == "win"){
+      gameDisplay.innerHTML += `${P1} wins!`
+    }else if (P2Result == "win"){
+      gameDisplay.innerHTML += `${P2} wins!`
+    }else{
+        gameDisplay.innerHTML += `
+        Make your guess!
+        <input type="number" id="guess"></input><br>
+        <button onclick="gtn_makeGuess(getElementById('guess').value)">Guess</button>
+          `
+    }
   }else{
-      gameDisplay.innerHTML += `
-      Make your guess!
-      <input type="number" id="guess"></input><br>
-      <button onclick="gtn_makeGuess(getElementById('guess').value)">Guess</button>
-        `
-      }
+    //The game has not started, waiting for someone to join
+      gameDisplay.innerHTML = 
+    `<h1> waiting for someone to join your game</h1>`
   }
 }
