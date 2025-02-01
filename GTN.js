@@ -171,6 +171,11 @@ function gtn_updateScore(){
     firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
 
     function _readScores(snapshot){
+      if(snapshot.vals == null){
+        //ScoreTable is missing, rebuild!
+        console.log("Scores Table missing, rebuilding")
+        firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(_readScores);
+      }
       console.log("callback in gtn_updateScore: _readScores")
 
       console.log(snapshot.val());
