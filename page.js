@@ -3,15 +3,15 @@ function page_updateGameList(gameList){
     if(gameList == null){
     gameDisplay.innerHTML = 
     `No Games here, you can wait or you can create your own game! :(<br>
-      <button onclick="fb_createGame()">Create a game</button>
+      <button onclick="gtn_createGame()">Create a game</button>
     `
     }else{
     gameDisplay.innerHTML = 'Games available:<br>';
     Object.keys(gameList).forEach(function(key) {
-      gameDisplay.innerHTML += "<button onclick='fb_joinGame(\""+key+"\")'>Join "+gameList[key]+'\'s game</button><br>';
+      gameDisplay.innerHTML += "<button onclick='gtn_joinGame(\""+key+"\")'>Join "+gameList[key]+'\'s game</button><br>';
       //console.log(key, gameList[key]);
     });
-    gameDisplay.innerHTML += "<br>or <button onclick='fb_createGame()'>Create a new one</button>";
+    gameDisplay.innerHTML += "<br>or <button onclick='gtn_createGame()'>Create a new one</button>";
 
   }
 }
@@ -49,7 +49,7 @@ console.log(challengerGuess)
       gameDisplay.innerHTML += `
       Make your guess!
       <input type="number" id="guess"></input><br>
-      <button onclick="fb_makeGuess(getElementById('guess').value)">Guess</button>
+      <button onclick="gtn_makeGuess(getElementById('guess').value)">Guess</button>
         `
       }
   }
