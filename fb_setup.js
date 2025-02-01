@@ -55,3 +55,8 @@ function fb_authenticate(RUN_NEXT){
     console.log("There was an error reading the message");
     console.error(error);
   }
+
+  function fb_error(error) {
+    console.log("There was a Firebase error");
+    console.error(error);
+  }

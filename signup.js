@@ -1,19 +1,13 @@
 fb_initialise();
 var user;
-fb_authenticate(readUserDetails);
+fb_authenticate(()=>{});
 function signup_register(){
-    console.log(displayName.value);
-    console.log(age.value);
-    console.log(gender.value);
-}
-
-function readUserDetails(){
-    firebase.database().ref('/userdetails/'+user.uid+'/').once('value', _readDetails);
-    function _readDetails(snapshot){
-        if(snapshot.val() == null){
-            //User Doesn't exist send to sign up page
-        }  else {
-            alert ("welcome")
-        }
+    var userDetails = {
+        displayName:displayName.value,
+        age:age.value,
+        gender:gender.value,
+        name:user.displayName,
+        photoURL:user.photoURL
     }
+    firebase.database().ref('/userdetails/'+user.uid+'/').set(userDetails, fb_error());
 }
