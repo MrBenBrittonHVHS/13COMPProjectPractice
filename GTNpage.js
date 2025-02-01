@@ -33,6 +33,9 @@ function GTNpage_drawGame(gameData){
     P2Result = gameData[P2id]["result"];
     P1Guess = gameData[P1id]["guess"];
     P1Result = gameData[P1id]["result"];
+
+if (whoAmI
+
     console.log(P2Guess)
 
     gameDisplay.innerHTML = 
@@ -40,12 +43,19 @@ function GTNpage_drawGame(gameData){
     <h1>${P1} vs. ${P2}</h1>
     ${P1Guess} ${P1Result} : ${P2Guess} ${P2Result}<br>
   <br>`
-
+// If the game has been won...
     if (P1Result == "win"){
       gameDisplay.innerHTML += `${P1} wins!`
     }else if (P2Result == "win"){
       gameDisplay.innerHTML += `${P2} wins!`
     }else{
+// If the game is ongoing
+      if(lastTurn == user.uid){
+        //You had the last turn - you need to wait
+        gameDisplay.innerHTML += `
+        Waiting for 
+          `
+      }
         gameDisplay.innerHTML += `
         Make your guess!
         <input type="number" id="guess"></input><br>
