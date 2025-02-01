@@ -31,7 +31,7 @@ function GTNpage_drawGame(gameData){
     P1id = gameData.P1;
     P2id = gameData.P2;
     P1 = gameData[P1id]["name"];
-    P2 = gameData[P2id]["name"];    
+    P2 = gameData[P2id]["name"];   
     P2Guess = gameData[P2id]["guess"];
     P2Result = gameData[P2id]["result"];
     P1Guess = gameData[P1id]["guess"];
