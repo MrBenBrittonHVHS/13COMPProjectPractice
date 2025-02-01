@@ -121,8 +121,8 @@ function gameScreen(){
     strokeWeight(4);
     text(score, 50, 50);
     textSize(14);
-    text("your last score was "+lastScore, 50, 150);    
-    text("your best score is "+highScore, 220, 150);
+    text("your last score was "+lastScore, 50, 20);    
+    text("your best score is "+highScore, 220, 20);
 }
 
 function endScreen(){
