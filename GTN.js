@@ -73,7 +73,7 @@ function gtn_joinGame(game){
       // Create the new game record
       console.log("Creating")
 
-      firebase.database().ref('/gamesInProgress/'+gameID+'/').update(
+      firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
         {
           number: gameNumber,
           P2: user.uid,
