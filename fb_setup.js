@@ -44,3 +44,4 @@ function fb_authenticate(RUN_NEXT){
       });
     }
   })
+}
