@@ -151,10 +151,10 @@ function gtn_updateScore(){
       var scores = snapshot.val();
       var myWins = 1;
       var theirLosses = 1;
-      if(user.uid in scores){
+      if(user.uid in scores && "wins" in scores[user.uid]){
         myWins = scores[user.uid].wins+1;
       }
-      if(theirID in scores){
+      if(theirID in scores && "losses" in scores[theirID]){
         theirLosses = scores[theirID].losses+1
       }
       firebase.database().ref('/gameScores/GTN/').set(
