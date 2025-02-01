@@ -173,12 +173,12 @@ function ad_processUSERReadAll(_result, _path, _snapshot, _save, _error) {
       //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                      //<=====
       ad_adminArray.push({
         displayName: childData.displayName,
-        email: childData.email,
+        gender: childData.gender,
         // Left photoURL out ==> so long the table will be too wide for screen
         //photoURL:   childData.photoURL,  
-        gameName: childData.gameName,
+        name: childData.name,
         age: childData.age,
-        uid: childKey
+        //uid: childKey
         //   more fields ????
       });
     });
