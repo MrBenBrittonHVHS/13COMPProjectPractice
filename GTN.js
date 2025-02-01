@@ -150,19 +150,30 @@ function gtn_updateScore(){
       console.log(snapshot.val());
       var scores = snapshot.val();
       var myWins = 1;
+      var myLosses = 0;
       var theirLosses = 1;
+      var theirWins = 0;
       if(user.uid in scores && "wins" in scores[user.uid]){
         myWins = scores[user.uid].wins+1;
+      }
+      if(user.uid in scores && "losses" in scores[user.uid]){
+        mylosses = scores[user.uid].losses;
       }
       if(theirID in scores && "losses" in scores[theirID]){
         theirLosses = scores[theirID].losses+1
       }
+      if(theirID in scores && "wins" in scores[theirID]){
+        theirLosses = scores[theirID].wins
+      }
+      
       firebase.database().ref('/gameScores/GTN/').update(
         {
           [user.uid]: {
             wins:myWins,
+            myLosses:myLosses
           },
           [theirID]: {
+            wins:theirWins,
             losses:theirLosses
           }
         }
