@@ -165,7 +165,7 @@ function gtn_updateScore(){
       if(theirID in scores && "wins" in scores[theirID]){
         theirLosses = scores[theirID].wins
       }
-      
+      console.log("update...")
       firebase.database().ref('/gameScores/GTN/').update(
         {
           [user.uid]: {
