@@ -1,4 +1,4 @@
-function page_updateGameList(gameList){
+function GTNpage_updateGameList(gameList){
   console.log(gameList)
     if(gameList == null){
     gameDisplay.innerHTML = 
@@ -16,11 +16,11 @@ function page_updateGameList(gameList){
   }
 }
 
-function page_updateGameScreen(gameState){
+function GTNpagepage_updateGameScreen(gameState){
   console.log("GameListener running")
 }
 
-function page_drawGame(gameData){
+function GTNpagepage_drawGame(gameData){
   owner = gameData.gameOwner.name;
   challenger = gameData.challenger.name;
 

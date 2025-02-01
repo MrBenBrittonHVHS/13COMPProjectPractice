@@ -45,3 +45,13 @@ function fb_authenticate(RUN_NEXT){
     }
   })
 }
+
+  /*-----------------------------------------*/
+  // fb_readError(error)
+  // DB read record failed
+  // Input:  error message returned from firebase
+  /*-----------------------------------------*/
+  function fb_readError(error) {
+    console.log("There was an error reading the message");
+    console.error(error);
+  }
