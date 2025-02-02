@@ -241,8 +241,9 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
       //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                      //<=====
       ad_adminArray.push({
         uid: childKey,
-        gameName: childData.gameName,
-        score: childData.score
+        userName: childData.user,
+        highScore: childData.lastScore,
+        lastScore: childData.highScore
         //   more fields ????
       });
     });
