@@ -256,7 +256,7 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
   //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.               //<=====
   //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
   ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
-    1, GeoDash);                                                             //<=====
+    1, "gameScores/GeoDash");                                                             //<=====
 }
 
 /**************************************************************/
