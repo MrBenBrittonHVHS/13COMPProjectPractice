@@ -95,9 +95,9 @@ function GTNpage_displayScores(snapshot){
   scores = snapshot.val()
 //	Visit non-inherited enumerable keys
 //
-scoresDisplay.innerHTML =`Name, Wins, Losses<br>`
+scoresDisplay.innerHTML =`Name, Wins, Losses, win ratio<br>`
 Object.keys(scores).forEach(function(key) {
-  scoresDisplay.innerHTML += `${scores[key]["name"]}, ${scores[key]["wins"]}, ${scores[key]["losses"]}, <br>`
+  scoresDisplay.innerHTML += `${scores[key]["name"]}, ${scores[key]["wins"]}, ${scores[key]["losses"]}, ${scores[key]["wins"]/scores[key]["losses"]}<br>`
 
 });
 }
