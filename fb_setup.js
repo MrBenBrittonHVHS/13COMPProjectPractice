@@ -25,7 +25,7 @@ const firebaseConfig = {
   // As soon as you have the script working, delete this log.
   console.log(firebase);	
 }
-
+fb_initialise();
 function fb_authenticate(RUN_NEXT){
   firebase.auth().onAuthStateChanged((authUser)=>{
     if (authUser){
