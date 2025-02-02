@@ -96,8 +96,38 @@ function GTNpage_displayScores(snapshot){
 //	Visit non-inherited enumerable keys
 //
 scoresDisplay.innerHTML =`Name, Wins, Losses, win ratio<br>`
-Object.keys(scores).forEach(function(key) {
+Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
   scoresDisplay.innerHTML += `${scores[key]["name"]}, ${scores[key]["wins"]}, ${scores[key]["losses"]}, ${scores[key]["wins"]/scores[key]["losses"]}<br>`
 
 });
+  function _sortByRatio(a,b){
+    const A = scores[a]["wins"]/scores[a]["losses"]; 
+    const B = scores[b]["wins"]/scores[b]["losses"]; 
+
+    if (A>B){
+      return(-1)
+    }else{
+      return(1)
+    }
+  }
 }
+
+/*
+  { name: "Magnetic", value: 13 },
+  { name: "Zeros", value: 37 },
+];
+
+// sort by value
+items.sort((a, b) => a.value - b.value);
+
+// sort by name
+items.sort((a, b) => {
+  const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+*/
