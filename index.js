@@ -1,4 +1,3 @@
-fb_initialise();
 var user;
 fb_authenticate(readUserDetails);
 var displayName;

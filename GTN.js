@@ -10,7 +10,6 @@ const UID = sessionStorage.getItem("UID");
 
 
 //Startup
-fb_initialise();
 console.log("Authenticate");
 fb_authenticate(gtn_checkGames);
 console.log("Google Authentication finished");

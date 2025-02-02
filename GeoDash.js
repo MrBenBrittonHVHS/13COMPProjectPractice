@@ -33,7 +33,6 @@ var obstacles;
 // setup()
 /*******************************************************/
 var user;
-fb_initialise();
 fb_authenticate(()=>{});
 
 function setup() {
