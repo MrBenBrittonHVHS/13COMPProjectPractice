@@ -76,7 +76,7 @@ const DETAILS = "userdetails"
 function fb_readAll(_path,_something,_callback){
     firebase.database().ref(_path).once('value', _doThis, fb_error);
     function _doThis(snapshot){
-    _callback("**OK**","**PATH**",snapshot, "**save**","**error**");
+    _callback("OK","**PATH**",snapshot, "**save**","**error**");
     }
 };
 
