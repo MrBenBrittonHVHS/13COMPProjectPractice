@@ -100,6 +100,7 @@ scoresDisplay.innerHTML =`<div style="display:grid;grid-template-columns: auto a
 <div>wins</div>
 <div>Losses</div>
 <div>win ratio</div>
+umm
 `
 
 Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
@@ -111,7 +112,8 @@ Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
   `
 });
 
-scoresDisplay.innerHTML += `enddiv</div>`;
+scoresDisplay.innerHTML += `enddiv</div>thing`;
+
 console.log(scoresDisplay.innerHTML)
 
   function _sortByRatio(a,b){
