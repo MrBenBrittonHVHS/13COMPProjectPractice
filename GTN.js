@@ -196,46 +196,44 @@ function gtn_updateScore(){
         console.log("Scores Table missing, rebuilding")
         //firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);
       }else{
-
         console.log(snapshot.val());
-       scores = snapshot.val();
+        scores = snapshot.val();
       }
-        var myWins = 1;
-        var myLosses = 0;
-        var theirLosses = 1;
-        var theirWins = 0;
-        if(user.uid in scores){
-          if("wins" in scores[user.uid]){
-            myWins = scores[user.uid].wins+1;
-          }
-          if("losses" in scores[user.uid]){
-            myLosses = scores[user.uid].losses;
+      var myWins = 1;
+      var myLosses = 0;
+      var theirLosses = 1;
+      var theirWins = 0;
+      if(user.uid in scores){
+        if("wins" in scores[user.uid]){
+          myWins = scores[user.uid].wins+1;
+        }
+        if("losses" in scores[user.uid]){
+          myLosses = scores[user.uid].losses;
+        }
+      }
+      if(theirID in scores){
+        if("losses" in scores[theirID]){
+          theirLosses = scores[theirID].losses+1
+        }
+        if("wins" in scores[theirID]){
+          theirWins = scores[theirID].wins
+        }
+      }
+      console.log("update..."+theirLosses)
+      firebase.database().ref('/gameScores/GTN/').update(
+        {
+          [user.uid]: {
+            name:myName,
+            wins:myWins,
+            losses:myLosses
+          },
+          [theirID]: {
+            name: theirName,
+            wins:theirWins,
+            losses:theirLosses
           }
         }
-        if(theirID in scores){
-          if("losses" in scores[theirID]){
-            theirLosses = scores[theirID].losses+1
-          }
-          if("wins" in scores[theirID]){
-            theirWins = scores[theirID].wins
-          }
-        }
-        console.log("update..."+theirLosses)
-        firebase.database().ref('/gameScores/GTN/').update(
-          {
-            [user.uid]: {
-              name:myName,
-              wins:myWins,
-              losses:myLosses
-            },
-            [theirID]: {
-              name: theirName,
-              wins:theirWins,
-              losses:theirLosses
-            }
-          }
-        )
-      }
+      )
     }
   }
 }
