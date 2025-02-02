@@ -222,19 +222,21 @@ function gtn_updateScore(){
         }
       }
       console.log("update..."+theirLosses)
-      firebase.database().ref('/gameScores/GTN/').update(
-        {
-          [user.uid]: {
-            name:myName,
-            wins:myWins,
-            losses:myLosses
-          },
-          [theirID]: {
-            name: theirName,
-            wins:theirWins,
-            losses:theirLosses
-          }
+      var updates =         {
+        [user.uid]: {
+          name:myName,
+          wins:myWins,
+          losses:myLosses
+        },
+        [theirID]: {
+          name: theirName,
+          wins:theirWins,
+          losses:theirLosses
         }
+      };
+      console.log(updates)
+      firebase.database().ref('/gameScores/GTN/').update(
+updates
       )
     }
   }
