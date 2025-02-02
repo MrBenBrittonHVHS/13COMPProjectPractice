@@ -128,7 +128,7 @@ function ad_GeoDash() {
   ad_alterClass('ad_btn', 'grey');
   document.getElementById("b_adGeoDash").style.backgroundColor = "cyan";
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
-  //fb_readAll(GeoDash, null, ad_processGeoDashReadAll);                            //<=====
+  fb_readAll("gameScores/GeoDash", null, ad_processGeoDashReadAll);                            //<=====
 }
 
 /**************************************************************/
