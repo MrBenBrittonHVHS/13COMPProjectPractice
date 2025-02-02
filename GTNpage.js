@@ -61,7 +61,8 @@ if (P1id == user.uid){
   <br>`
 // If the game has been won...
     if (P1Result == "win"){
-      gameDisplay.innerHTML += `${P1} wins!`
+      gameDisplay.innerHTML += `${P1} wins!
+      <button onClick="`
     }else if (P2Result == "win"){
       gameDisplay.innerHTML += `${P2} wins!`
     }else{
