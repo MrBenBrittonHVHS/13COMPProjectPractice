@@ -190,15 +190,16 @@ function gtn_updateScore(){
     firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
 
     function _readScores(snapshot){
+      var scores = {};
       if(snapshot.val() == null){
         //ScoreTable is missing, rebuild!
         console.log("Scores Table missing, rebuilding")
-        firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);
+        //firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);
       }else{
-        console.log("callback in gtn_updateScore: _readScores")
 
         console.log(snapshot.val());
-        var scores = snapshot.val();
+       scores = snapshot.val();
+      }
         var myWins = 1;
         var myLosses = 0;
         var theirLosses = 1;
