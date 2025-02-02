@@ -11,8 +11,13 @@ const UID = sessionStorage.getItem("UID");
 
 //Startup
 console.log("Authenticate");
-fb_authenticate(gtn_checkGames);
+fb_authenticate(gtn_startup);
 console.log("Google Authentication finished");
+
+function gtn_startup(){
+  gtn_checkGames()
+  gtn_checkScores();
+}
 
 /***
  * Landed on page. Create the read listener on the waiting games table
@@ -23,6 +28,10 @@ function gtn_checkGames(){
   console.log("Checking Games")
   //console.log(database)
   firebase.database().ref('/waitingGames').on('value', gtn_readGamesList, fb_readError);
+}
+function gtn_checkScores(){
+  console.log("gtn_checkScores")
+  firebase.database().ref('/gameScores/GTN').on('value', GTNpage_displayScores, fb_readError);
 }
 
 /***

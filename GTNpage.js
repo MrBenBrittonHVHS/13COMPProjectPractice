@@ -90,3 +90,8 @@ if (P1id == user.uid){
     `<h1> waiting for someone to join your game</h1>`
   }
 }
+
+function GTNpage_displayScores(snapshot){
+  console.log(snapshot.val())
+for 
+}
