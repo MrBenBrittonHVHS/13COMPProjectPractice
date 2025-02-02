@@ -62,9 +62,10 @@ if (P1id == user.uid){
 // If the game has been won...
     if (P1Result == "win"){
       gameDisplay.innerHTML += `${P1} wins!
-      <button onClick="`
+      <button onClick="GTN_checkGames()">Back to the lobby</button>`
     }else if (P2Result == "win"){
-      gameDisplay.innerHTML += `${P2} wins!`
+      gameDisplay.innerHTML += `${P2} wins!
+            <button onClick="GTN_checkGames()">Back to the lobby</button>`
     }else{
 // If the game is ongoing
       if((lastTurn != user.uid)||(P1id==P2id)){
