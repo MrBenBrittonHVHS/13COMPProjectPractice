@@ -2,8 +2,8 @@
   ad_manager.js
 
   Written by Mr Bob, Term 1 2020
-  Develop a basic W3.CSS interface.
-    v1 Basic layout of landing & game pages.
+  Develop a bagtnc W3.CSS interface.
+    v1 Bagtnc layout of landing & game pages.
     v2 Landing/games pages full screen height but only display
        landing page on start up.
     v3 Stop canvas being displayed until its wanted.
@@ -16,15 +16,15 @@
        left hand div (user control panel).
     v7 Make START button toggle between START and STOP button. 
     v8 Add bouncing balls when START button clicked.
-    v9 Add reSize canvas.
-    v10 Make font size responsive by using em instead of px.
+    v9 Add reGTNze canvas.
+    v10 Make font gtnze respongtnve by ugtnng em instead of px.
     v11 Add firebase
     v12 Add admin with fixed table update
     v13 Add numeric validation
     v14 Add further comments
     v15 Modify to accept path as 1st param from readAll & 
         add class to button to set colour grey
-    v16 Modify to use admin.html page & session storage
+    v16 Modify to use admin.html page & sesgtnon storage
     v17 Alter _dbRec to _snapshot & alter order of function params
         on functions to process firebase readAll
     v18 DID NOT implement v18 change of COL_ to C_
@@ -33,7 +33,7 @@
     v20 Insert null as 2nd paramter to fb_readAll calls &
         use console.log instead of logIt function
     v21 Fix code comments.
-    v22 Replace DB button with GeoDash button to stop confusion
+    v22 Replace DB button with GeoDash button to stop confugtnon
 *************************************************************/
 
 /*************************************************************          //<=====
@@ -44,7 +44,7 @@
          copy the contents of this file into it.                        //<=====
     4. Taylor your ad_manger.js to fit your program code by looking     //<=====
          at lines ending with  //<=======                               //<=====
-    5. NOTE: I make use of contants GeoDash & SI to hold the paths of my     //<=====
+    5. NOTE: I make use of contants GeoDash & GTN to hold the paths of my     //<=====
         firebase scores. EG: const GeoDash = 'scores/GeoDash'                     //<=====
     6. DO NOT ALTER ANYTHING BELOW THE COMMENT LINE                     //<=====
         "YOU SHOULD NOT ALTER ANY OF THE CODE BELOW"                    //<=====
@@ -132,20 +132,20 @@ function ad_GeoDash() {
 }
 
 /**************************************************************/
-// ad_SI()
-// Input event; called when admin's SI (space Invaders) button clicked
-// Display SI admin screen
+// ad_GTN()
+// Input event; called when admin's GTN (space Invaders) button clicked
+// Display GTN admin screen
 // Input:  n/a
 // Return: n/a
 /**************************************************************/
-function ad_SI() {
-  console.log('%c ad_SI(): ',
+function ad_GTN() {
+  console.log('%c ad_GTN(): ',
               'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
 
   ad_alterClass('ad_btn', 'grey');
-  document.getElementById("b_adSI").style.backgroundColor = "cyan";
+  document.getElementById("b_adGTN").style.backgroundColor = "cyan";
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
-  //fb_readAll(SI, null, ad_processSIReadAll);                            //<=====
+  fb_readAll("gameScores/GTN", null, ad_processGTNReadAll);                            //<=====
 }
 
 /**************************************************************/
@@ -261,8 +261,8 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
 }
 
 /**************************************************************/
-// ad_processSIReadAll(_result, _path,  _snapshot, _save, _error)
-// Called by fb_readAll to handle result of read ALL SI records request.
+// ad_processGTNReadAll(_result, _path,  _snapshot, _save, _error)
+// Called by fb_readAll to handle result of read ALL GTN records request.
 // Save data & update display with record info
 // Input:  result('waiting...', 'OK', 'error'), path, 
 //         snapshot, where to save it & error msg if any
@@ -271,8 +271,8 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
 // Return: n/a
 /**************************************************************/
 //                 _procFunc(_result, _path, _snapshot, _save, _error)
-function ad_processSIReadAll(_result, _path, _snapshot, _save, _error) {
-  console.log('%c ad_processSIReadAll(): result= ' + _result,
+function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
+  console.log('%c ad_processGTNReadAll(): result= ' + _result,
               'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
 
   // Note: if read was successful, _result  must = "OK"                 //<=====
@@ -302,7 +302,7 @@ function ad_processSIReadAll(_result, _path, _snapshot, _save, _error) {
       });
     });
   } else {
-    console.log('%c ad_processSIReadAll(): no records',
+    console.log('%c ad_processGTNReadAll(): no records',
                 'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
   }
 
@@ -311,7 +311,7 @@ function ad_processSIReadAll(_result, _path, _snapshot, _save, _error) {
   //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.               //<=====
   //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
   ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
-    1, SI);                                                             //<=====
+    1, GTN);                                                             //<=====
 }
 
 /**************************************************************/
@@ -404,7 +404,7 @@ function ad_alterClass(_class, _colour) {
 //         7. firebase path for delete capability.
 // Return: n/a
 //
-// V01: Initial version
+// V01: Initial vergtnon
 // v02: Add delete & update code
 //
 // Example call of ad_displayAll:
@@ -550,7 +550,7 @@ function ad_clickEditCell(_tableId, _item, _path) {
   table.onclick = function(event) {
     //console.log('%c ad_clickEditCell', 'click event called. path = ' +
     //  _path, 'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';'); 
-    // 4 possible targets:                
+    // 4 posgtnble targets:                
     let target = event.target.closest('.edit-cancel,.edit-ok,td');
 
     if (!table.contains(target)) return;
@@ -578,7 +578,7 @@ function ad_clickEditCell(_tableId, _item, _path) {
       data: td.innerHTML
     };
 
-    td.classList.add('edit-td'); // td is in edit state, CSS also styles area inside
+    td.classList.add('edit-td'); // td is in edit state, CSS also styles area ingtnde
 
     let textArea = document.createElement('textarea');
     textArea.style.width = td.clientWidth + 'px';
