@@ -95,11 +95,15 @@ function GTNpage_displayScores(snapshot){
   scores = snapshot.val()
 //	Visit non-inherited enumerable keys
 //
-scoresDisplay.innerHTML =`Name, Wins, Losses, win ratio<br>`
+scoresDisplay.innerHTML =`<div style="display:grid;grid-template-columns: auto auto auto auto;>
+<div>Name</div><div> Wins, Losses</div><div> win ratio</div>`
 Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
-  scoresDisplay.innerHTML += `${scores[key]["name"]}, ${scores[key]["wins"]}, ${scores[key]["losses"]}, ${scores[key]["wins"]/scores[key]["losses"]}<br>`
-
+  scoresDisplay.innerHTML += `<div>${scores[key]["name"]}</div>
+  <div> ${scores[key]["wins"]}</div>
+  <div> ${scores[key]["losses"]}</div>
+  <div> ${scores[key]["wins"]/scores[key]["losses"]}</div>`
 });
+scoresDisplay.innerHTML += `</div>`;
   function _sortByRatio(a,b){
     const A = scores[a]["wins"]/scores[a]["losses"]; 
     const B = scores[b]["wins"]/scores[b]["losses"]; 
