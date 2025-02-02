@@ -167,11 +167,15 @@ function gtn_updateScore(){
   function _readPlayers(snapshot){
     console.log("callback in gtn_updateScore: _readPlayers")
 
-    if(snapshot.val().P1 == user.uid)
+    if(snapshot.val().P1 == user.uid){
       //I am player 1;
       theirID = snapshot.val().P2;
-    else{
+      theirName = snapshot.val().P2name;
+      myName = snapshot.val().P1name;
+    }else{
       theirID = snapshot.val().P1;
+      theirName = snapshot.val().P1name;
+      myName = snapshot.val().P2name;
     }
     console.log("MyID = "+user.uid)
     console.log("TheirID = "+theirID)
@@ -211,10 +215,12 @@ function gtn_updateScore(){
         firebase.database().ref('/gameScores/GTN/').update(
           {
             [user.uid]: {
+              name:myName,
               wins:myWins,
               losses:myLosses
             },
             [theirID]: {
+              name: theirName,
               wins:theirWins,
               losses:theirLosses
             }
