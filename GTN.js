@@ -191,6 +191,7 @@ function gtn_updateScore(){
 
     function _readScores(snapshot){
       var scores = {};
+      console.log(scores)
       if(snapshot.val() == null){
         //ScoreTable is missing, rebuild!
         console.log("Scores Table missing, rebuilding")
@@ -199,6 +200,7 @@ function gtn_updateScore(){
         console.log(snapshot.val());
         scores = snapshot.val();
       }
+      console.log(scores)
       var myWins = 1;
       var myLosses = 0;
       var theirLosses = 1;
