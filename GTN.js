@@ -178,12 +178,12 @@ function gtn_updateScore(){
     if(snapshot.val().P1 == user.uid){
       //I am player 1;
       theirID = snapshot.val().P2;
-      theirName = snapshot.val().P2name;
-      myName = snapshot.val().P1name;
+      theirName = snapshot.val()[theirID]['name'];
+      myName = snapshot.val()[user.uid];
     }else{
       theirID = snapshot.val().P1;
-      theirName = snapshot.val().P1name;
-      myName = snapshot.val().P2name;
+      theirName = snapshot.val()[theirID]['name'];
+      myName = snapshot.val()[user.uid]['name'];
     }
     console.log("MyID = "+user.uid)
     console.log("TheirID = "+theirID)
