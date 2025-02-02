@@ -104,14 +104,14 @@ scoresDisplay.innerHTML =`<div style="display:grid;grid-template-columns: auto a
 
 Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
   scoresDisplay.innerHTML += `
-  <div>${scores[key]["name"]}</div>
+  <div> ${scores[key]["name"]}</div>
   <div> ${scores[key]["wins"]}</div>
   <div> ${scores[key]["losses"]}</div>
   <div> ${scores[key]["wins"]/scores[key]["losses"]}</div>
   `
 });
 
-scoresDisplay.innerHTML += `</div>`;
+scoresDisplay.innerHTML += `enddiv</div>`;
 console.log(scoresDisplay.innerHTML)
 
   function _sortByRatio(a,b){
