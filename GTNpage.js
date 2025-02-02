@@ -111,7 +111,7 @@ Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
   `
 });
 
-//scoresDisplay.innerHTML += `enddiv</div><p>thing</p>`;
+scoresDisplay.innerHTML += `<div></div>enddiv</div><p>thing</p>`;
 
 console.log(scoresDisplay.innerHTML)
 
