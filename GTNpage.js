@@ -99,17 +99,20 @@ scoresDisplay.innerHTML =`<div style="display:grid;grid-template-columns: auto a
 <div>Name</div>
 <div>wins</div>
 <div>Losses</div>
-<div>win ratio</div>`
+<div>win ratio</div>
+`
 
 Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
-  scoresDisplay.innerHTML += `<div>${scores[key]["name"]}</div>
+  scoresDisplay.innerHTML += `
+  <div>${scores[key]["name"]}</div>
   <div> ${scores[key]["wins"]}</div>
   <div> ${scores[key]["losses"]}</div>
-  <div> ${scores[key]["wins"]/scores[key]["losses"]}</div>`
+  <div> ${scores[key]["wins"]/scores[key]["losses"]}</div>
+  `
 });
 
 scoresDisplay.innerHTML += `</div>`;
-
+console.log(scoresDisplay.innerHTML)
 
   function _sortByRatio(a,b){
     const A = scores[a]["wins"]/scores[a]["losses"]; 
