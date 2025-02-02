@@ -97,7 +97,7 @@ function GTNpage_displayScores(snapshot){
 //
 scoresDisplay.innerHTML =`<div style="display:grid;grid-template-columns: auto auto auto auto;">
 <div>Name</div>
-<div> Wins</div>
+<div>wins</div>
 <div>Losses</div>
 <div>win ratio</div>`
 
