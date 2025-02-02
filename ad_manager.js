@@ -61,7 +61,17 @@ const DETAILS = "userdetails"
 
 // fb_readALL
 //Reconstituted from gl
-//
+///**************************************************************/
+// ad_processUSERReadAll(_result, _path,  _snapshot, _save, _error)
+// Called by fb_readAll to handle result of read ALL USER records request.
+// Save data & update display with record info
+// Input:  result('waiting...', 'OK', 'error'), path, 
+//         snapshot, where to save it & error msg if any
+//         NOTE: This is the raw data, EG snapshot, and
+//                NOT the output from snapshot.val()
+// Return: n/a
+/**************************************************************/
+//                   _procFunc(_result, _path,  _snapshot, _save, _error)
 
 function fb_readAll(_path,_something,_callback){
     firebase.database().ref(_path).once('value', _doThis, fb_error);
