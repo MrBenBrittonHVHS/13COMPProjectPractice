@@ -33,7 +33,7 @@
     v20 Insert null as 2nd paramter to fb_readAll calls &
         use console.log instead of logIt function
     v21 Fix code comments.
-    v22 Replace DB button with BB button to stop confusion
+    v22 Replace DB button with GeoDash button to stop confusion
 *************************************************************/
 
 /*************************************************************          //<=====
@@ -44,8 +44,8 @@
          copy the contents of this file into it.                        //<=====
     4. Taylor your ad_manger.js to fit your program code by looking     //<=====
          at lines ending with  //<=======                               //<=====
-    5. NOTE: I make use of contants BB & SI to hold the paths of my     //<=====
-        firebase scores. EG: const BB = 'scores/BB'                     //<=====
+    5. NOTE: I make use of contants GeoDash & SI to hold the paths of my     //<=====
+        firebase scores. EG: const GeoDash = 'scores/GeoDash'                     //<=====
     6. DO NOT ALTER ANYTHING BELOW THE COMMENT LINE                     //<=====
         "YOU SHOULD NOT ALTER ANY OF THE CODE BELOW"                    //<=====
 *************************************************************/          //<=====
@@ -115,20 +115,20 @@ function ad_user() {
 }
 
 /**************************************************************/
-// ad_BB()
-// Input event; called when admin's BB (Bouncing Balls) button clicked
-// Display BB admin screen
+// ad_GeoDash()
+// Input event; called when admin's GeoDash (Bouncing Balls) button clicked
+// Display GeoDash admin screen
 // Input:  n/a
 // Return: n/a
 /**************************************************************/
-function ad_BB() {
-  console.log('%c ad_BB(): ',
+function ad_GeoDash() {
+  console.log('%c ad_GeoDash(): ',
               'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
 
   ad_alterClass('ad_btn', 'grey');
-  document.getElementById("b_adBB").style.backgroundColor = "cyan";
+  document.getElementById("b_adGeoDash").style.backgroundColor = "cyan";
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
-  //fb_readAll(BB, null, ad_processBBReadAll);                            //<=====
+  //fb_readAll(GeoDash, null, ad_processGeoDashReadAll);                            //<=====
 }
 
 /**************************************************************/
@@ -206,8 +206,8 @@ function ad_processUSERReadAll(_result, _path, _snapshot, _save, _error) {
 }
 
 /**************************************************************/
-// ad_processBBReadAll(_result, _path,  _snapshot, _save, _error)
-// Called by fb_readAll to handle result of read ALL BB records request.
+// ad_processGeoDashReadAll(_result, _path,  _snapshot, _save, _error)
+// Called by fb_readAll to handle result of read ALL GeoDash records request.
 // Save data & update display with record info
 // Input:  result('waiting...', 'OK', 'error'), path, 
 //         snapshot, where to save it & error msg if any
@@ -216,8 +216,8 @@ function ad_processUSERReadAll(_result, _path, _snapshot, _save, _error) {
 // Return: n/a
 /**************************************************************/
 //                 _procFunc(_result, _path, _snapshot, _save, _error)
-function ad_processBBReadAll(_result, _path, _snapshot, _save, _error) {
-  console.log('%c ad_processBBReadAll(): result= ' + _result,
+function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
+  console.log('%c ad_processGeoDashReadAll(): result= ' + _result,
               'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
 
   // Note: if read was successful, _result  must = "OK"                 //<=====
@@ -247,7 +247,7 @@ function ad_processBBReadAll(_result, _path, _snapshot, _save, _error) {
       });
     });
   } else {
-    console.log('%c ad_processBBReadAll(): no records',
+    console.log('%c ad_processGeoDashReadAll(): no records',
                 'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
   }
 
@@ -256,7 +256,7 @@ function ad_processBBReadAll(_result, _path, _snapshot, _save, _error) {
   //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.               //<=====
   //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
   ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
-    1, BB);                                                             //<=====
+    1, GeoDash);                                                             //<=====
 }
 
 /**************************************************************/
@@ -387,7 +387,7 @@ function ad_alterClass(_class, _colour) {
 
 /**************************************************************/
 // ad_displayAll(_tableId, _array, _action, _hideId, _showId, _path)
-// Called by ad_dbRAllUResult & ad_dbRAllBBResult
+// Called by ad_dbRAllUResult & ad_dbRAllGeoDashResult
 // Display all user records screen:
 //    1. optionaly hide other screen & display the admin screen.
 //    2. empty the html table.
@@ -454,7 +454,7 @@ function ad_displayAll(_tableId, _array, _action, _hideId1, _hideId2,
 
 /**************************************************************/
 // ad_genTableHead(_tableInfo, _fieldNames, _action)
-// Called by ad_BB
+// Called by ad_GeoDash
 // Create table header
 // Input:  table & object array of data 
 //         if _action = true, then add action column
@@ -486,7 +486,7 @@ function ad_genTableHead(_tableInfo, _fieldNames, _action) {
 
 /**************************************************************/
 // ad_genTableEntry(_tableInfo, _array, _action, _tableId, _item, _path)
-// Called by ad_BB
+// Called by ad_GeoDash
 // Create table entries
 // Input:  table & object array of data
 //         if _action = true, then add DELETE button
