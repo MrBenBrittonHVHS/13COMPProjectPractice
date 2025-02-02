@@ -93,6 +93,7 @@ if (P1id == user.uid){
 
 function GTNpage_displayScores(snapshot){
   scores = snapshot.val()
+  if(scores){
 //	Visit non-inherited enumerable keys
 //
 var string =`<div style="display:grid;grid-template-columns: auto auto auto auto;">
@@ -125,6 +126,9 @@ console.log(string)
       return(1)
     }
   }
+}else{
+  scoresDisplay.innerHTML ="no scores to show";
+}
 }
 
 /*
