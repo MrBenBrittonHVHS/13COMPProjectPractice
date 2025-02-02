@@ -45,7 +45,7 @@ function gtn_createGame(){
   console.log("gtn_createGame")
   firebase.database().ref('/waitingGames').off()
 
-  firebase.database().ref('/waitingGames/'+user.uid).set(displayName)
+  firebase.database().ref('/waitingGames/'+user.uid).set(displayName, fb_error)
   gameRole = "gameOwner";
   gameID = user.uid;
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
