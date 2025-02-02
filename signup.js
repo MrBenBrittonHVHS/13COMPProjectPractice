@@ -1,4 +1,3 @@
-fb_initialise();
 var user;
 fb_authenticate(()=>{});
 function signup_register(){
