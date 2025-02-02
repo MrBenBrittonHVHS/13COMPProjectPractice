@@ -297,7 +297,8 @@ function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
       ad_adminArray.push({
         uid: childKey,
         wins: childData.wins,
-        losses: childData.losses
+        losses: childData.losses,
+        name: childData.name
         //   more fields ????
       });
     });
