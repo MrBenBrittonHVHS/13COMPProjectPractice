@@ -18,5 +18,12 @@ function signup_register(){
         name:user.displayName,
         photoURL:user.photoURL
     }
-    firebase.database().ref('/userdetails/'+user.uid+'/').set(userDetails, fb_error).then(window.location.href="index.html");
+    firebase.database().ref('/userdetails/'+user.uid+'/').set(userDetails, _redirect);
+    function _redirect(error){
+        if (error){
+            fb_error(error);
+        }else{
+            window.location.href="index.html";
+        }
+    }
 }
