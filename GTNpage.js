@@ -92,6 +92,12 @@ if (P1id == user.uid){
 }
 
 function GTNpage_displayScores(snapshot){
-  console.log(snapshot.val())
-for 
+  scores = snapshot.val()
+//	Visit non-inherited enumerable keys
+//
+scoresDisplay.innerHTML =`Name, Wins, Losses<br>`
+Object.keys(scores).forEach(function(key) {
+  scoresDisplay.innerHTML += `${scores[key]["name"]}, ${scores[key]["wins"]}, ${scores[key]["losses"]}, <br>`
+
+});
 }
