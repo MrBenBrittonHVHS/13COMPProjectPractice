@@ -114,8 +114,6 @@ Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
 string += `</div>`;
 scoresDisplay.innerHTML =string;
 
-console.log(string)
-
   function _sortByRatio(a,b){
     const A = scores[a]["wins"]/scores[a]["losses"]; 
     const B = scores[b]["wins"]/scores[b]["losses"]; 
