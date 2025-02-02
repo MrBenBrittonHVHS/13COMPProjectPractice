@@ -296,8 +296,8 @@ function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
       //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                      //<=====
       ad_adminArray.push({
         uid: childKey,
-        gameName: childData.gameName,
-        level: childData.level
+        wins: childData.wins,
+        losses: childData.losses
         //   more fields ????
       });
     });
@@ -311,7 +311,7 @@ function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
   //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.               //<=====
   //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
   ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
-    1, GTN);                                                             //<=====
+    1, "gameScores/GTN");                                                             //<=====
 }
 
 /**************************************************************/
