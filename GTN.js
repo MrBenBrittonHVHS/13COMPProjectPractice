@@ -44,6 +44,7 @@ function gtn_readGamesList(snapshot) {
 function gtn_createGame(){
   console.log("gtn_createGame")
   firebase.database().ref('/waitingGames').off()
+  console.log("writing to waiting games")
 
   firebase.database().ref('/waitingGames/'+user.uid).set(displayName, fb_error)
   gameRole = "gameOwner";
