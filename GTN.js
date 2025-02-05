@@ -168,7 +168,7 @@ function gtn_makeGuess(guess){
     //Update scores in the database
      gtn_updateScore();     
   }
-  var updates = {lastTurn:"player1"};     
+  var updates = {["lastTurn/"]:"player1"};     
   updates[user.uid+"/guess/"] = guess;     
   updates[user.uid+"/result/"] = result;     
   updates["lastTurn/"] = user.uid;     
