@@ -122,6 +122,14 @@ function gtn_startGame(gameID){
   firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);     
 }
 /**
+ * Stop the game by creating a game listener
+ */
+function gtn_stopGame(gameID){
+  console.log("gtn_stopGame")
+  console.log("Game Stopped - Start read on")
+  firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);     
+}
+/**
  * When the game state changes pass the data to the view page drawer
  */
 function gtn_gameStateChanged(snapshot){
@@ -130,7 +138,15 @@ function gtn_gameStateChanged(snapshot){
   gameNumber = snapshot.val().number;     
   GTNpage_drawGame(snapshot.val());     
 }
-
+/**
+ * When the game state is updated pass the data to the view page drawer
+ */
+function gtn_gameStateUpdated(snapshot){
+  console.log("gtn_gameStateUpdated")
+  console.log(snapshot.val())
+  gameNumber = snapshot.val().number;     
+  GTNpage_updateGame(snapshot.val());     
+}
 // When a guess is made 'play' the game, save result to the database
 /**
  * Called by the webpage - Guess button
