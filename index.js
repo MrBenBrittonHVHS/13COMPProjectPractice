@@ -34,3 +34,24 @@ function displayPage(){
     <a href=GTN.html>Guess the Number</a>
     `
 }
+
+index_makeMeAdmin(){
+    firebase.database().ref('/admin/').set({[user.uid]:true}, _redirect);
+    function _redirect(error){
+        if (error){
+            fb_error(error);
+        }else{
+            window.location.href="index.html";
+        }
+    }
+}
+index_removeAdmin(){
+    firebase.database().ref('/admin/').remove(user.uid, _redirect);
+    function _redirect(error){
+        if (error){
+            fb_error(error);
+        }else{
+            window.location.href="index.html";
+        }
+    }
+}
