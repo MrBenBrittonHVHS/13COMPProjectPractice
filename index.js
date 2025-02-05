@@ -42,9 +42,10 @@ function displayPage(){
     <p>
     <img src="${photoURL}" alt="profile Pic">Hi ${displayName}, welcome back.
     </p>
-    Have a look at the games:
-    <a href=GeoDash.html>GeoDash</a><br>
-    <a href=GTN.html>Guess the Number</a>
+    Have a look at the games:<ul>
+    <li><a href=GeoDash.html>GeoDash</a></li>
+    <li><a href=GTN.html>Guess the Number</a></li>
+    <ul>
     `
 }
 
@@ -60,6 +61,16 @@ function index_makeMeAdmin(){
 }
 function index_removeAdmin(){
     firebase.database().ref('/adnim/'+user.uid).remove(_redirect);  
+    function _redirect(error){
+        if (error){
+            fb_error(error);  
+        }else{
+            window.location.href="index.html";  
+        }
+    }
+}
+function index_unregister(){
+    firebase.database().ref('/userdetails/'+user.uid).remove(_redirect);  
     function _redirect(error){
         if (error){
             fb_error(error);  
