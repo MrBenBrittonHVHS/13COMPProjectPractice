@@ -1,22 +1,22 @@
-var user;
-var gameRole; //values are challenger or gameOwner
-var gameID;
-var gameNumber;
+var user;     
+var gameRole;      //values are challenger or gameOwner
+var gameID;     
+var gameNumber;     
 
 
-const displayName = sessionStorage.getItem("displayName");
-const photoURL = sessionStorage.getItem("photoURL");
-const UID = sessionStorage.getItem("UID");
+const displayName = sessionStorage.getItem("displayName");     
+const photoURL = sessionStorage.getItem("photoURL");     
+const UID = sessionStorage.getItem("UID");     
 
 
 //Startup
-console.log("Authenticate");
-fb_authenticate(gtn_startup);
-console.log("Google Authentication finished");
+console.log("Authenticate");     
+fb_authenticate(gtn_startup);     
+console.log("Google Authentication finished");     
 
 function gtn_startup(){
   gtn_checkGames()
-  gtn_checkScores();
+  gtn_checkScores();     
 }
 
 /***
@@ -27,11 +27,11 @@ function gtn_checkGames(){
 
   console.log("Checking Games")
   //console.log(database)
-  firebase.database().ref('/waitingGames').on('value', gtn_readGamesList, fb_readError);
+  firebase.database().ref('/waitingGames').on('value', gtn_readGamesList, fb_readError);     
 }
 function gtn_checkScores(){
   console.log("gtn_checkScores")
-  firebase.database().ref('/gameScores/GTN').on('value', GTNpage_displayScores, fb_readError);
+  firebase.database().ref('/gameScores/GTN').on('value', GTNpage_displayScores, fb_readError);     
 }
 
 /***
@@ -54,9 +54,9 @@ function gtn_createGame(){
   console.log("gtn_createGame")
   firebase.database().ref('/waitingGames').off()
 
-  firebase.database().ref('/waitingGames/'+user.uid).set(displayName, fb_error);
-  gameRole = "gameOwner";
-  gameID = user.uid;
+  firebase.database().ref('/waitingGames/'+user.uid).set(displayName, fb_error);     
+  gameRole = "gameOwner";     
+  gameID = user.uid;     
   firebase.database().ref('/gamesInProgress/'+gameID+'/').set(
     {
       P1: user.uid,
@@ -83,14 +83,14 @@ function gtn_joinGame(game){
   firebase.database().ref('/waitingGames').off()
   // Start the new game
   // Set up the game globals
-  gameID = game;
-  gameNumber = Math.floor(Math.random()*100);
+  gameID = game;     
+  gameNumber = Math.floor(Math.random()*100);     
   // Get the name of the owner and create the new game record
   var gameOwner=""
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     console.log("callback in gtn_joinGame: get userID")
 
-    gameOwner = snapshot.val();
+    gameOwner = snapshot.val();     
     //Delete the waiting game
     firebase.database().ref('/waitingGames/'+gameID+'/').set(null).then(()=>{
       // Create the new game record
@@ -107,7 +107,7 @@ function gtn_joinGame(game){
         }
       ).then(gtn_startGame(gameID))
     })
-  }, fb_error);
+  }, fb_error);     
 }
 
 // Game code.
@@ -119,7 +119,7 @@ function gtn_joinGame(game){
 function gtn_startGame(gameID){
   console.log("gtn_startGame")
   console.log("Game Started - Start read on")
-  firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);
+  firebase.database().ref('/gamesInProgress/'+gameID).on('value', gtn_gameStateChanged, fb_readError);     
 }
 /**
  * When the game state changes pass the data to the view page drawer
@@ -127,8 +127,8 @@ function gtn_startGame(gameID){
 function gtn_gameStateChanged(snapshot){
   console.log("gtn_gameStateChanged")
   console.log(snapshot.val())
-  gameNumber = snapshot.val().number;
-  GTNpage_drawGame(snapshot.val());
+  gameNumber = snapshot.val().number;     
+  GTNpage_drawGame(snapshot.val());     
 }
 
 // When a guess is made 'play' the game, save result to the database
@@ -141,22 +141,22 @@ function gtn_makeGuess(guess){
   var gamePath = "/gamesInProgress/"+gameID+"/"
 
   
-  var result;
+  var result;     
   if (guess < gameNumber){
-    result = 'too low';
+    result = 'too low';     
   }else if (guess > gameNumber){
-    result = 'too high';
+    result = 'too high';     
   }else{
-    result = 'win';
+    result = 'win';     
     //Update scores in the database
-     gtn_updateScore();
+     gtn_updateScore();     
   }
-  var updates = {};
-  updates[user.uid+"/guess/"] = guess;
-  updates[user.uid+"/result/"] = result;
-  updates["lastTurn/"] = user.uid;
+  var updates = {};     
+  updates[user.uid+"/guess/"] = guess;     
+  updates[user.uid+"/result/"] = result;     
+  updates["lastTurn/"] = user.uid;     
   console.log(updates)
-  firebase.database().ref(gamePath).update(updates);
+  firebase.database().ref(gamePath).update(updates);     
 }
 
 /**
@@ -170,47 +170,47 @@ function gtn_makeGuess(guess){
 function gtn_updateScore(){
   console.log("gtn_updateScore")
 
-  firebase.database().ref('/gamesInProgress/'+gameID+'/').once('value', _readPlayers);
-  var theirID;
+  firebase.database().ref('/gamesInProgress/'+gameID+'/').once('value', _readPlayers);     
+  var theirID;     
   function _readPlayers(snapshot){
     console.log("callback in gtn_updateScore: _readPlayers")
 
     if(snapshot.val().P1 == user.uid){
-      //I am player 1;
-      theirID = snapshot.val().P2;
-      theirName = snapshot.val()[theirID]['name'];
-      myName = snapshot.val()[user.uid];
+      //I am player 1;     
+      theirID = snapshot.val().P2;     
+      theirName = snapshot.val()[theirID]['name'];     
+      myName = snapshot.val()[user.uid];     
     }else{
-      theirID = snapshot.val().P1;
-      theirName = snapshot.val()[theirID]['name'];
-      myName = snapshot.val()[user.uid]['name'];
+      theirID = snapshot.val().P1;     
+      theirName = snapshot.val()[theirID]['name'];     
+      myName = snapshot.val()[user.uid]['name'];     
     }
     console.log("MyID = "+user.uid)
     console.log("TheirID = "+theirID)
-    firebase.database().ref('/gameScores/GTN/').once('value', _readScores);
+    firebase.database().ref('/gameScores/GTN/').once('value', _readScores);          
 
     function _readScores(snapshot){
-      var scores = {};
+      var scores = {};          
       console.log(scores)
       if(snapshot.val() == null){
         //ScoreTable is missing, rebuild!
         console.log("Scores Table missing, rebuilding")
-        //firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);
+        //firebase.database().ref('/gameScores/GTN/').set({dummyID:"dummyScore"}).then(gtn_updateScore);          
       }else{
-        console.log(snapshot.val());
-        scores = snapshot.val();
+        console.log(snapshot.val());          
+        scores = snapshot.val();          
       }
       console.log(scores)
-      var myWins = 1;
-      var myLosses = 0;
-      var theirLosses = 1;
-      var theirWins = 0;
+      var myWins = 1;          
+      var myLosses = 0;          
+      var theirLosses = 1;          
+      var theirWins = 0;          
       if(user.uid in scores){
         if("wins" in scores[user.uid]){
-          myWins = scores[user.uid].wins+1;
+          myWins = scores[user.uid].wins+1;          
         }
         if("losses" in scores[user.uid]){
-          myLosses = scores[user.uid].losses;
+          myLosses = scores[user.uid].losses;          
         }
       }
       if(theirID in scores){
@@ -233,7 +233,7 @@ function gtn_updateScore(){
           wins:theirWins,
           losses:theirLosses
         }
-      };
+      };          
       console.log(updates)
       firebase.database().ref('/gameScores/GTN/').update(
 updates
