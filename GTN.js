@@ -209,8 +209,7 @@ function gtn_updateScore(){
     firebase.database().ref('/gameScores/GTN/').once('value', _readScores);          
 
     function _readScores(snapshot){
-      var scores = {};          
-      console.log(scores)
+      var scores = {GTNScores:1};          
       if(snapshot.val() == null){
         //ScoreTable is missing, rebuild!
         console.log("Scores Table missing, rebuilding")
