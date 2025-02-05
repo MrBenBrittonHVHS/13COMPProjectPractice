@@ -6,12 +6,12 @@ function GTNpage_updateGameList(gameList){
       <button onclick="gtn_createGame()">Create a game</button>
     `
     }else{
-    gameDisplay.innerHTML = 'Games available:<br>';
+    gameDisplay.innerHTML = 'Games available:<br>';   
     Object.keys(gameList).forEach(function(key) {
-      gameDisplay.innerHTML += "<button onclick='gtn_joinGame(\""+key+"\")'>Join "+gameList[key]+'\'s game</button><br>';
-      //console.log(key, gameList[key]);
-    });
-    gameDisplay.innerHTML += "<br>or <button onclick='gtn_createGame()'>Create a new one</button>";
+      gameDisplay.innerHTML += "<button onclick='gtn_joinGame(\""+key+"\")'>Join "+gameList[key]+'\'s game</button><br>';   
+      //console.log(key, gameList[key]);   
+    });   
+    gameDisplay.innerHTML += "<br>or <button onclick='gtn_createGame()'>Create a new one</button>";   
 
   }
 }
@@ -24,23 +24,23 @@ function GTNpage_drawGame(gameData){
   
   if("P2" in gameData){
     //The game has started!
-    lastTurn = gameData.lastTurn;
-    P1id = gameData.P1;
-    P2id = gameData.P2;
-    P1 = gameData[P1id]["name"];
-    P2 = gameData[P2id]["name"];   
-    P2Guess = gameData[P2id]["guess"];
-    P2Result = gameData[P2id]["result"];
-    P1Guess = gameData[P1id]["guess"];
-    P1Result = gameData[P1id]["result"];
+    lastTurn = gameData.lastTurn;   
+    P1id = gameData.P1;   
+    P2id = gameData.P2;   
+    P1 = gameData[P1id]["name"];   
+    P2 = gameData[P2id]["name"];      
+    P2Guess = gameData[P2id]["guess"];   
+    P2Result = gameData[P2id]["result"];   
+    P1Guess = gameData[P1id]["guess"];   
+    P1Result = gameData[P1id]["result"];   
 
     //Who am I - Detect which player I am
 if (P1id == user.uid){
   //I am Player1
-  theirName = P2;
+  theirName = P2;   
 }else{
   // I am player 2
-  theirName = P1;
+  theirName = P1;   
 }
 
     console.log(P2Guess)
@@ -96,7 +96,7 @@ function GTNpage_displayScores(snapshot){
   if(scores){
 //	Visit non-inherited enumerable keys
 //
-var string =`<div style="display:grid;grid-template-columns: auto auto auto auto;">
+var string =`<div style="display:grid;   grid-template-columns: auto auto auto auto;   ">
 <div>Name</div>
 <div>wins</div>
 <div>Losses</div>
@@ -109,14 +109,14 @@ Object.keys(scores).sort(_sortByRatio).forEach(function(key) {
   <div> ${scores[key]["losses"]}</div>
   <div> ${scores[key]["wins"]/scores[key]["losses"]}</div>
   `
-});
+});   
 
-string += `</div>`;
-scoresDisplay.innerHTML =string;
+string += `</div>`;   
+scoresDisplay.innerHTML =string;   
 
   function _sortByRatio(a,b){
-    const A = scores[a]["wins"]/scores[a]["losses"]; 
-    const B = scores[b]["wins"]/scores[b]["losses"]; 
+    const A = scores[a]["wins"]/scores[a]["losses"];    
+    const B = scores[b]["wins"]/scores[b]["losses"];    
 
     if (A>B){
       return(-1)
@@ -125,26 +125,26 @@ scoresDisplay.innerHTML =string;
     }
   }
 }else{
-  scoresDisplay.innerHTML ="no scores to show";
+  scoresDisplay.innerHTML ="no scores to show";   
 }
 }
 
 /*
   { name: "Magnetic", value: 13 },
   { name: "Zeros", value: 37 },
-];
+];   
 
 // sort by value
-items.sort((a, b) => a.value - b.value);
+items.sort((a, b) => a.value - b.value);   
 
 // sort by name
 items.sort((a, b) => {
-  const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-  const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  const nameA = a.name.toUpperCase();    // ignore upper and lowercase
+  const nameB = b.name.toUpperCase();    // ignore upper and lowercase
   if (nameA < nameB) {
-    return -1;
+    return -1;   
   }
   if (nameA > nameB) {
-    return 1;
+    return 1;   
   }
 */

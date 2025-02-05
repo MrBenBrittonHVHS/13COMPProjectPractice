@@ -1,28 +1,28 @@
-var user;
-fb_authenticate(readUserDetails);
-var displayName;
-var photoURL;
-var UID;
+var user;  
+fb_authenticate(readUserDetails);  
+var displayName;  
+var photoURL;  
+var UID;  
 
 function readUserDetails(){
-    firebase.database().ref('/userdetails/'+user.uid+'/').once('value', _readDetails);
+    firebase.database().ref('/userdetails/'+user.uid+'/').once('value', _readDetails);  
 
     function _readDetails(snapshot){
         if(snapshot.val() == null){
             //User Doesn't exist send to sign up page
             window.location.href = "signUp.html"
         }  else {
-            displayName = snapshot.val().displayName;
-            photoURL = snapshot.val().photoURL;
-            UID = snapshot.val().UID;
-            sessionStorage.setItem("displayName", displayName);
-            sessionStorage.setItem("photoURL", photoURL);
-            sessionStorage.setItem("UID", UID);
-            firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);
+            displayName = snapshot.val().displayName;  
+            photoURL = snapshot.val().photoURL;  
+            UID = snapshot.val().UID;  
+            sessionStorage.setItem("displayName", displayName);  
+            sessionStorage.setItem("photoURL", photoURL);  
+            sessionStorage.setItem("UID", UID);  
+            firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);  
             displayPage()
         }
     }
-    firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);
+    firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);  
     function _readAdmin(snapshot){
         console.log("Read Admin")
         console.log(snapshot.val())
@@ -49,22 +49,22 @@ function displayPage(){
 }
 
 function index_makeMeAdmin(){
-    firebase.database().ref('/adnim/').set({[user.uid]:true}, _redirect);
+    firebase.database().ref('/adnim/').set({[user.uid]:true}, _redirect);  
     function _redirect(error){
         if (error){
-            fb_error(error);
+            fb_error(error);  
         }else{
-            window.location.href="index.html";
+            window.location.href="index.html";  
         }
     }
 }
 function index_removeAdmin(){
-    firebase.database().ref('/adnim/'+user.uid).remove(_redirect);
+    firebase.database().ref('/adnim/'+user.uid).remove(_redirect);  
     function _redirect(error){
         if (error){
-            fb_error(error);
+            fb_error(error);  
         }else{
-            window.location.href="index.html";
+            window.location.href="index.html";  
         }
     }
 }
