@@ -59,7 +59,7 @@ function index_makeMeAdmin(){
     }
 }
 function index_removeAdmin(){
-    firebase.database().ref('/admin/'+user.uid).remove();
+    firebase.database().ref('/admin/'+user.uid).remove(_redirect);
     function _redirect(error){
         if (error){
             fb_error(error);
