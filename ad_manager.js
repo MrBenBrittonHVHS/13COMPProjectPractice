@@ -300,11 +300,7 @@ function ad_processAdminReadAll(_result, _path, _snapshot, _save, _error) {
       // ENSURE THE FEILDS YOU PUSH INTO THE ARRAY OF OBJECTS           //<=====
       //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                      //<=====
       ad_adminArray.push({
-        uid: childKey,
-        wins: childData.wins,
-        losses: childData.losses,
-        name: childData.name
-        //   more fields ????
+        [childKey]: childData,
       });
     });
   } else {
