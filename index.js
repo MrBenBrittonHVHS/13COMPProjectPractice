@@ -18,7 +18,7 @@ function readUserDetails(){
             sessionStorage.setItem("displayName", displayName);
             sessionStorage.setItem("photoURL", photoURL);
             sessionStorage.setItem("UID", UID);
-            firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
+            firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);
             displayPage()
         }
     }
@@ -49,7 +49,7 @@ function displayPage(){
 }
 
 function index_makeMeAdmin(){
-    firebase.database().ref('/admin/').set({[user.uid]:true}, _redirect);
+    firebase.database().ref('/adnim/').set({[user.uid]:true}, _redirect);
     function _redirect(error){
         if (error){
             fb_error(error);
@@ -59,7 +59,7 @@ function index_makeMeAdmin(){
     }
 }
 function index_removeAdmin(){
-    firebase.database().ref('/admin/'+user.uid).remove(_redirect);
+    firebase.database().ref('/adnim/'+user.uid).remove(_redirect);
     function _redirect(error){
         if (error){
             fb_error(error);
