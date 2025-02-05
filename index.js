@@ -30,7 +30,7 @@ function readUserDetails(){
             if (snapshot.val()){
                 console.log("display Admin")
 
-                admin.innerHTML = `    <a href="admin.html">admin</a><br>`
+                admin.innerHTML = `    <a href="admin.html">admin - only admins can see this link</a><br>`
             }
         }
     }
