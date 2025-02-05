@@ -477,7 +477,6 @@ function ad_genTableHead(_tableInfo, _fieldNames, _action) {
 
 /**************************************************************/
 // ad_genTableEntry(_tableInfo, _array, _action, _tableId, _item, _path)
-// Called by ad_GeoDash
 // Create table entries
 // Input:  table & object array of data
 //         if _action = true, then add DELETE button
