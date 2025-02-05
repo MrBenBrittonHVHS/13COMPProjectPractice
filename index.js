@@ -35,7 +35,7 @@ function displayPage(){
     `
 }
 
-index_makeMeAdmin(){
+function index_makeMeAdmin(){
     firebase.database().ref('/admin/').set({[user.uid]:true}, _redirect);
     function _redirect(error){
         if (error){
@@ -45,7 +45,7 @@ index_makeMeAdmin(){
         }
     }
 }
-index_removeAdmin(){
+function index_removeAdmin(){
     firebase.database().ref('/admin/').remove(user.uid, _redirect);
     function _redirect(error){
         if (error){
