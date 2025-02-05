@@ -24,8 +24,12 @@ function readUserDetails(){
     }
     firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
     function _readAdmin(snapshot){
+        console.log("Read Admin")
+        console.log(snapshot.val())
         if(snapshot.val() != null){
-            if (snapshot.val().UID){
+            if (snapshot.val()){
+                console.log("display Admin")
+
                 admin.innerHTML = `    <a href="admin.html">admin</a><br>`
             }
         }
