@@ -25,9 +25,11 @@ function readUserDetails(){
     firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
     function _readAdmin(snapshot){
         if(snapshot.val() != null){
-            if (snapshot.val().user.uid)
-            //User Doesn't exist send to sign up page
+            if (snapshot.val().UID){
+                admin.innerHTML = `    <a href="admin.html">admin</a><br>`
+            }
         }
+    }
 }
 
 function displayPage(){
