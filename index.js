@@ -18,9 +18,16 @@ function readUserDetails(){
             sessionStorage.setItem("displayName", displayName);
             sessionStorage.setItem("photoURL", photoURL);
             sessionStorage.setItem("UID", UID);
+            firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
             displayPage()
         }
     }
+    firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
+    function _readAdmin(snapshot){
+        if(snapshot.val() != null){
+            if (snapshot.val().user.uid)
+            //User Doesn't exist send to sign up page
+        }
 }
 
 function displayPage(){
