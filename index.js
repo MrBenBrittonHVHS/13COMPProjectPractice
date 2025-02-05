@@ -22,7 +22,7 @@ function readUserDetails(){
             displayPage()
         }
     }
-    firebase.database().ref('/admin/'+user.uid+'/').once('value', _readAdmin);
+    firebase.database().ref('/adnim/'+user.uid+'/').once('value', _readAdmin);
     function _readAdmin(snapshot){
         console.log("Read Admin")
         console.log(snapshot.val())
