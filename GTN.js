@@ -86,7 +86,7 @@ function gtn_joinGame(game){
   gameID = game;     
   gameNumber = Math.floor(Math.random()*100);     
   // Get the name of the owner and create the new game record
-  var gameOwner=""
+  var gameOwner="player 1"
   firebase.database().ref('/waitingGames/'+gameID).once('value', (snapshot)=>{
     console.log("callback in gtn_joinGame: get userID")
 
