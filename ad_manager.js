@@ -136,6 +136,22 @@ function ad_GTN() {
   // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
   fb_readAll("gameScores/GTN", null, ad_processGTNReadAll);                            //<=====
 }
+/**************************************************************/
+// ad_admin()
+// Input event; called when admin's admin  button clicked
+// Display  admin screen
+// Input:  n/a
+// Return: n/a
+/**************************************************************/
+function ad_admin() {
+  console.log('%c ad_admin(): ',
+              'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
+
+  ad_alterClass('ad_btn', 'grey');
+  document.getElementById("b_adAdmin").style.backgroundColor = "cyan";
+  // ENSURE THE READ FUNCTION NAME & THE PATH NAME ARE CORRECT          //<=====
+  fb_readAll("adnim", null, ad_processAdminReadAll);                            //<=====
+}
 
 /**************************************************************/
 // ad_processUSERReadAll(_result, _path,  _snapshot, _save, _error)
@@ -250,8 +266,8 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
 }
 
 /**************************************************************/
-// ad_processGTNReadAll(_result, _path,  _snapshot, _save, _error)
-// Called by fb_readAll to handle result of read ALL GTN records request.
+// ad_processAdminReadAll(_result, _path,  _snapshot, _save, _error)
+// Called by fb_readAll to handle result of read ALL Admin records request.
 // Save data & update display with record info
 // Input:  result('waiting...', 'OK', 'error'), path, 
 //         snapshot, where to save it & error msg if any
@@ -260,8 +276,8 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
 // Return: n/a
 /**************************************************************/
 //                 _procFunc(_result, _path, _snapshot, _save, _error)
-function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
-  console.log('%c ad_processGTNReadAll(): result= ' + _result,
+function ad_processAdminReadAll(_result, _path, _snapshot, _save, _error) {
+  console.log('%c ad_processAdminReadAll(): result= ' + _result,
               'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
 
   // Note: if read was successful, _result  must = "OK"                 //<=====
