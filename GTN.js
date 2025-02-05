@@ -172,7 +172,7 @@ function gtn_updateScore(){
   console.log("gtn_updateScore")
 
   firebase.database().ref('/gamesInProgress/'+gameID+'/').once('value', _readPlayers);     
-  var theirID;     
+  var theirID = "default ID";     
   function _readPlayers(snapshot){
     console.log("callback in gtn_updateScore: _readPlayers")
 
