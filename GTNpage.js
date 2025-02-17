@@ -46,7 +46,7 @@ if (P1id == user.uid){
     console.log(P2Guess)
 
     gameDisplay.innerHTML = 
-    `${gameData.number}
+    `<div style="color:white;background-color:white">${gameData.number}</div>
     <div style="display:flex">
     <div style="width:40%">
       <h1>${P1}</h1>

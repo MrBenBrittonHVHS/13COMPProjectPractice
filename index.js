@@ -43,7 +43,7 @@ function displayPage(){
     <img src="${photoURL}" alt="profile Pic">Hi ${displayName}, welcome back.
     </p>
     Have a look at the games:<ul>
-    <li><a href=GeoDash.html>GeoDash</a></li>
+    <li><a href=GeoDash/GeoDash.html>GeoDash</a></li>
     <li><a href=GTN.html>Guess the Number</a></li>
     <ul>
     `
