@@ -122,7 +122,7 @@ function ad_GeoDash() {
 
 /**************************************************************/
 // ad_GTN()
-// Input event; called when admin's GTN (space Invaders) button clicked
+// Input event; called when admin's GTN  button clicked
 // Display GTN admin screen
 // Input:  n/a
 // Return: n/a
@@ -263,6 +263,60 @@ function ad_processGeoDashReadAll(_result, _path, _snapshot, _save, _error) {
   //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
   ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
     1, "gameScores/GeoDash");                                                             //<=====
+}
+/**************************************************************/
+// ad_processGTNReadAll(_result, _path,  _snapshot, _save, _error)
+// Called by fb_readAll to handle result of read ALL GTN records request.
+// Save data & update display with record info
+// Input:  result('waiting...', 'OK', 'error'), path, 
+//         snapshot, where to save it & error msg if any
+//         NOTE: This is the raw data, EG snapshot, and
+//                NOT the output from snapshot.val()
+// Return: n/a
+/**************************************************************/
+//                 _procFunc(_result, _path, _snapshot, _save, _error)
+function ad_processGTNReadAll(_result, _path, _snapshot, _save, _error) {
+  console.log('%c ad_processGTNReadAll(): result= ' + _result,
+              'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
+
+  // Note: if read was successful, _result  must = "OK"                 //<=====
+  if (_result != 'OK') {
+    console.error('Database read error for ' + _path + '\n' + _error);
+    alert('Database read error; see console log for details');
+    return;
+  }
+
+  var childKey;
+  var childData;
+  var ad_adminArray = [];
+
+  if (_snapshot.val() != null) {
+    _snapshot.forEach(function(childSnapshot) {
+      childKey = childSnapshot.key;
+      childData = childSnapshot.val();
+      console.log(Object.keys(childData));
+
+      // ENSURE THE FEILDS YOU PUSH INTO THE ARRAY OF OBJECTS           //<=====
+      //  MATCH YOUR FIREBASE RECORDS FOR THE PATH                      //<=====
+      ad_adminArray.push({
+        uid: childKey,
+        userName: childData.name,
+        wins: childData.wins,
+        losses: childData.losses
+        //   more fields ????
+      });
+    });
+  } else {
+    console.log('%c ad_processGeoDashReadAll(): no records',
+                'color: ' + COLAD_C + '; background-color: ' + COLAD_B + ';');
+  }
+
+  // build & display user data
+  // MAKE SURE THE FOLOWING PARAMETERS ARE CORRECT. PARAMETER:          //<=====
+  //  7 = COLUMMN NUMBER WHICH CONTAINS THE DATABASE KEY.               //<=====
+  //  8 = DATABASE PATH THE RECORDS WERE READ FROM.                     //<=====
+  ad_displayAll("t_userData", ad_adminArray, true, "", "", "",
+    1, "gameScores/GTN");                                                             //<=====
 }
 
 /**************************************************************/
