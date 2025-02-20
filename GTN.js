@@ -198,7 +198,7 @@ function gtn_updateScore(){
       //I am player 1;     
       theirID = snapshot.val().P2;     
       theirName = snapshot.val()[theirID]['name'];     
-      myName = snapshot.val()[user.uid];     
+      myName = snapshot.val()[user.uid]['name'];     
     }else{
       theirID = snapshot.val().P1;     
       theirName = snapshot.val()[theirID]['name'];     
@@ -244,12 +244,12 @@ function gtn_updateScore(){
         [user.uid]: {
           name:myName,
           wins:myWins,
-          losses:myLosses
+          losses:myLosses,
         },
         [theirID]: {
           name: theirName,
           wins:theirWins,
-          losses:theirLosses
+          losses:theirLosses,
         }
       };          
       console.log(updates)
